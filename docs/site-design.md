@@ -23,9 +23,12 @@ Decisiones acordadas con el usuario:
 2. **Contenido**: híbrido — funciones conservadas de VS Code + funciones propias.
 3. **Idiomas**: ES + EN con toggle (páginas separadas por idioma).
 4. **Alcance V1**: Home + Docs core (17 páginas de docs por idioma + home).
-5. **Capturas**: SOLO 2, aportadas por el usuario — `chat-llamacpp.png`
-   (chat con modelo local) y `hf-search.png` (búsqueda en HF). Cada una se usa
-   en exactamente una página. Ningún otro placeholder ni imagen en V1.
+5. **Capturas — flujo colaborativo**: el agente indica por página qué captura
+   se necesita (sección "Captura requerida" del plan); el usuario la saca de la
+   app corriendo y la pasa (ruta del archivo); el agente la copia a
+   `content/assets/` y la embebe con `![alt](assets/nombre.png)` al momento.
+   Ya aportadas: `chat-llamacpp.png` (chat con modelo local) y `hf-search.png`
+   (búsqueda HF). El sitio no usa placeholders ni imágenes genéricas.
 6. **Deploy**: worker nuevo en workers.dev (dominio custom opcional a futuro).
 
 ## 2. Arquitectura
@@ -106,9 +109,10 @@ Replica el mockup aprobado (`docs-layout-v4.html`):
   - Funciones conservadas (6 páginas): terminal, Git, debugging, extensiones
     (Open VSX), live preview, temas.
 - **Contenido**: H1, párrafos, callouts, bloques de código con botón copiar.
-  Las únicas imágenes del sitio: `chat-llamacpp.png` en "Integración con
-  Prometheus AI" y `hf-search.png` en "Búsqueda en Hugging Face". Feedback
-  "¿Te resultó útil?", prev/next.
+  Cada página lista las capturas requeridas y el usuario las aporta durante la
+  implementación (flujo colaborativo, decisión 5). Ya embebidas:
+  `chat-llamacpp.png` en "Integración con Prometheus AI" y `hf-search.png` en
+  "Búsqueda en Hugging Face". Feedback "¿Te resultó útil?", prev/next.
 - **TOC derecha** sticky ("En esta página") con los H2 del contenido.
 - El contenido de cada página se escribe desde el conocimiento real del
   codebase (lo implementado en las últimas sesiones: HF limit=20, context
