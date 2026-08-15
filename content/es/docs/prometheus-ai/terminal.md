@@ -17,6 +17,8 @@ La terminal del modelo no aparece en el panel de terminales del editor: es
 invisible salvo dentro del chat. Cada comando que ejecuta la IA es un bloque
 con su propia línea de prompt, su salida en vivo y su resultado:
 
+![Terminal IA embebida como bloque dentro del chat de Prometheus AI](/assets/chat-llamacpp.png)
+
 ```text
 $ pytest tests/ --maxfail=1
 ✓ 184 tests passed  (exit code: 0)

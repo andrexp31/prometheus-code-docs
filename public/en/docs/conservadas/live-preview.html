@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Live Preview</title>
+<link rel="stylesheet" href="/en/assets/site.css">
+</head>
+<body>
+<nav class="nav"><div class="wrap nav-inner">
+  <div class="logo"><div class="logo-badge">▲</div> Prometheus Code</div>
+  <div class="nav-links">
+    <a href="/en/#features">Features ▾</a>
+    <a href="/en/docs/empezar/instalacion" class="active">Docs</a>
+    <a href="/en/#descargas">Downloads</a>
+    <span>Blog</span><span>FAQ</span><span>Resources ▾</span>
+  </div>
+  <div class="nav-right">
+    <a class="lang-toggle" href="/docs/conservadas/live-preview">ES</a>
+    <a class="btn-download" href="/en/#descargas">Download</a>
+  </div>
+</div></nav>
+<div class="banner"><span class="x">✕</span><b>New:</b> 423 specialized agents + integrated local llama.cpp models — no cloud, no subscription</div>
+<div class="wrap layout">
+  <aside class="sidebar"><div class="side-cat"><div class="cat">Getting Started</div><a href="/en/docs/empezar/instalacion">Download & Install</a><a href="/en/docs/empezar/primeros-pasos">First Steps</a><a href="/en/docs/empezar/faq">FAQ</a></div><div class="side-cat"><div class="cat">Local Models</div><a href="/en/docs/modelos/configuracion">Configuration</a><a href="/en/docs/modelos/busqueda-hf">Hugging Face Search</a><a href="/en/docs/modelos/contexto">Context & Memory</a><a href="/en/docs/modelos/gpu">GPU Requirements</a></div><div class="side-cat"><div class="cat">Prometheus AI</div><a href="/en/docs/prometheus-ai/agentes">Automatic Agents (423)</a><a href="/en/docs/prometheus-ai/terminal">Embedded AI Terminal</a><a href="/en/docs/prometheus-ai/memoria">Persistent Memory</a><a href="/en/docs/prometheus-ai/historial">History & Sessions</a></div><div class="side-cat"><div class="cat">Preserved Features</div><a href="/en/docs/conservadas/terminal">Integrated Terminal</a><a href="/en/docs/conservadas/git">Git & Version Control</a><a href="/en/docs/conservadas/debugging">Debugging</a><a href="/en/docs/conservadas/extensiones">Extensions (Open VSX)</a><a href="/en/docs/conservadas/live-preview" class="active">Live Preview</a><a href="/en/docs/conservadas/temas">Themes</a></div></aside>
+  <main><div class="crumb">Home › Docs › Preserved Features › Live Preview</div><h1>Live Preview</h1>
+<p>Live Preview is Prometheus Code&#39;s own view for web development: open your
+project, hit the button and the web runs live inside the editor, without
+opening a browser. It is a dedicated pane of the editor, with its own vite
+server behind it.</p>
+<h2 id="s0">The web live, inside the editor</h2>
+<p>Live Preview starts a stable vite server (fixed execPath, no automatic
+browser opening) and renders the page in a dedicated pane of the editor view.
+Every change you save is reflected instantly, with vite&#39;s live reload:</p>
+<p><img src="/assets/live-preview.png" alt="Live Preview pane showing the web running inside the editor"></p>
+<blockquote>
+<p><strong>Tip:</strong> since it does not open any browser window, it is great for fast
+iteration without switching windows, and it leaves your browser free for
+what you need.</p>
+</blockquote>
+<h2 id="s1">When to use it</h2>
+<table>
+<thead>
+<tr>
+<th>Situation</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Iterating on a component or page</td>
+<td>Live Preview</td>
+</tr>
+<tr>
+<td>Testing responsive and full devtools</td>
+<td>separate browser</td>
+</tr>
+<tr>
+<td>Seeing the AI&#39;s result on your code</td>
+<td>Live Preview, chat beside it</td>
+</tr>
+</tbody></table>
+<p>The web is served with vite: the editor&#39;s own server compiles and serves the
+project live, with reload on save.</p>
+<h2 id="s2">What&#39;s next</h2>
+<ul>
+<li><a href="extensiones">Extensions (Open VSX)</a> — frontend tools from the open
+registry.</li>
+<li><a href="terminal">Integrated Terminal</a> — run the project from the terminal while
+watching the preview.</li>
+<li><a href="temas">Themes</a> — make the editor your own.</li>
+</ul>
+<div class="feedback-box"><span>Was this page helpful?</span><span class="fb-btn">👍</span><span class="fb-btn">👎</span><span style="margin-left:auto;color:#8b949e">Live Preview</span></div><div class="prevnext"><a href="/en/docs/conservadas/git">← conservadas/git</a><a href="/en/docs/conservadas/temas">conservadas/temas →</a></div></main>
+  <aside class="toc"><div class="t">On this page</div><a href="#s0">The web live, inside the editor</a><a href="#s1">When to use it</a><a href="#s2">What&#39;s next</a></aside>
+</div>
+<footer><div class="wrap foot-row">
+  <span>🌐 GitHub</span><span>🐦 X</span><span>📺 YouTube</span><span>💬 Reddit</span>
+  <div class="foot-links"><span>Support</span><span>Privacy</span><span>Manage cookies</span><span>Terms of use</span><span>License</span></div>
+</div></footer>
+</body>
+</html>

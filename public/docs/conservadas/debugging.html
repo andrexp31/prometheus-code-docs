@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Debugging</title>
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<nav class="nav"><div class="wrap nav-inner">
+  <div class="logo"><div class="logo-badge">▲</div> Prometheus Code</div>
+  <div class="nav-links">
+    <a href="/#features">Funciones ▾</a>
+    <a href="/docs/empezar/instalacion" class="active">Docs</a>
+    <a href="/#descargas">Descargas</a>
+    <span>Blog</span><span>FAQ</span><span>Recursos ▾</span>
+  </div>
+  <div class="nav-right">
+    <a class="lang-toggle" href="/en/docs/conservadas/debugging">EN</a>
+    <a class="btn-download" href="/#descargas">Descargar</a>
+  </div>
+</div></nav>
+<div class="banner"><span class="x">✕</span><b>Nuevo:</b> 423 agentes especializados + modelos locales llama.cpp integrados — sin nube, sin suscripción</div>
+<div class="wrap layout">
+  <aside class="sidebar"><div class="side-cat"><div class="cat">Empezar</div><a href="/docs/empezar/instalacion">Descarga e instalación</a><a href="/docs/empezar/primeros-pasos">Primeros pasos</a><a href="/docs/empezar/faq">Preguntas frecuentes</a></div><div class="side-cat"><div class="cat">Modelos locales</div><a href="/docs/modelos/configuracion">Configuración</a><a href="/docs/modelos/busqueda-hf">Búsqueda en Hugging Face</a><a href="/docs/modelos/contexto">Contexto y memoria</a><a href="/docs/modelos/gpu">Requisitos de GPU</a></div><div class="side-cat"><div class="cat">Prometheus AI</div><a href="/docs/prometheus-ai/agentes">Agentes automáticos (423)</a><a href="/docs/prometheus-ai/terminal">Terminal IA embebida</a><a href="/docs/prometheus-ai/memoria">Memoria persistente</a><a href="/docs/prometheus-ai/historial">Historial y sesiones</a></div><div class="side-cat"><div class="cat">Funciones conservadas</div><a href="/docs/conservadas/terminal">Terminal integrada</a><a href="/docs/conservadas/git">Git y control de versiones</a><a href="/docs/conservadas/debugging" class="active">Debugging</a><a href="/docs/conservadas/extensiones">Extensiones (Open VSX)</a><a href="/docs/conservadas/live-preview">Live Preview</a><a href="/docs/conservadas/temas">Temas</a></div></aside>
+  <main><div class="crumb">Inicio › Docs › Funciones conservadas › Debugging</div><h1>Debugging</h1>
+<p>El debugger integrado de VS Code se conserva completo en Prometheus Code:
+configurás el lanzamiento en <code>launch.json</code>, ponés breakpoints y depurás con el
+panel de ejecución y depuración, todo dentro del editor.</p>
+<h2 id="s0">Configurar con launch.json</h2>
+<p>Abrí la vista de <strong>Ejecutar y depurar</strong> (icono ▶ de la barra de actividades) y
+elegí <strong>Crear un archivo launch.json</strong>. El editor genera una plantilla con las
+configuraciones de lanzamiento para el tipo de proyecto que detecta (Node.js,
+Python, etc.) en <code>.vscode/launch.json</code>:</p>
+<pre><code class="language-json">{
+  &quot;version&quot;: &quot;0.2.0&quot;,
+  &quot;configurations&quot;: [
+    {
+      &quot;type&quot;: &quot;node&quot;,
+      &quot;request&quot;: &quot;launch&quot;,
+      &quot;name&quot;: &quot;Iniciar programa&quot;,
+      &quot;program&quot;: &quot;${workspaceFolder}/src/index.js&quot;
+    }
+  ]
+}
+</code></pre>
+<p>Elegí la configuración en el desplegable de arriba y presioná <strong>F5</strong>.</p>
+<h2 id="s1">Breakpoints</h2>
+<p>Un clic en el margen izquierdo del editor pone (o quita) un breakpoint: la
+línea se marca en rojo y la ejecución se detiene ahí. También podés usar
+<code>F9</code> para alternarlo sin tocar el ratón.</p>
+<blockquote>
+<p><strong>Tip:</strong> los breakpoints se guardan con el espacio de trabajo, así que
+quedan listos la próxima vez que abras el proyecto.</p>
+</blockquote>
+<h2 id="s2">El panel de depuración</h2>
+<p>Cuando la ejecución se detiene, el panel muestra el estado completo:</p>
+<table>
+<thead>
+<tr>
+<th>Sección</th>
+<th>Qué muestra</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Variables</td>
+<td>las variables del ámbito actual, con sus valores en vivo</td>
+</tr>
+<tr>
+<td>Pila de llamadas</td>
+<td>el stack hasta el punto de detención</td>
+</tr>
+<tr>
+<td>Inspección</td>
+<td>expresiones que definiste vos para seguir</td>
+</tr>
+<tr>
+<td>Consola de depuración</td>
+<td>comandos y logs en el contexto del programa</td>
+</tr>
+</tbody></table>
+<p>Los controles estándar están siempre a mano: <strong>Continuar</strong> (F5), <strong>Saltar</strong>
+(F10), <strong>Entrar</strong> (F11), <strong>Salir</strong> (Shift+F11) y <strong>Detener</strong> (Shift+F5).</p>
+<h2 id="s3">Qué sigue</h2>
+<ul>
+<li><a href="terminal">Terminal integrada</a> — correr el proyecto y ver los logs.</li>
+<li><a href="git">Git y control de versiones</a> — commitear el código que quedó depurado.</li>
+<li><a href="live-preview">Live Preview</a> — el frontend en vivo dentro del editor.</li>
+</ul>
+<div class="feedback-box"><span>¿Te resultó útil esta página?</span><span class="fb-btn">👍</span><span class="fb-btn">👎</span><span style="margin-left:auto;color:#8b949e">Debugging</span></div><div class="prevnext"><a href="/docs/prometheus-ai/terminal">← prometheus-ai/terminal</a><a href="/docs/conservadas/extensiones">conservadas/extensiones →</a></div></main>
+  <aside class="toc"><div class="t">En esta página</div><a href="#s0">Configurar con launch.json</a><a href="#s1">Breakpoints</a><a href="#s2">El panel de depuración</a><a href="#s3">Qué sigue</a></aside>
+</div>
+<footer><div class="wrap foot-row">
+  <span>🌐 GitHub</span><span>🐦 X</span><span>📺 YouTube</span><span>💬 Reddit</span>
+  <div class="foot-links"><span>Soporte</span><span>Privacidad</span><span>Gestión de cookies</span><span>Términos de uso</span><span>Licencia</span></div>
+</div></footer>
+</body>
+</html>

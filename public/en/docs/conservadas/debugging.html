@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Debugging</title>
+<link rel="stylesheet" href="/en/assets/site.css">
+</head>
+<body>
+<nav class="nav"><div class="wrap nav-inner">
+  <div class="logo"><div class="logo-badge">▲</div> Prometheus Code</div>
+  <div class="nav-links">
+    <a href="/en/#features">Features ▾</a>
+    <a href="/en/docs/empezar/instalacion" class="active">Docs</a>
+    <a href="/en/#descargas">Downloads</a>
+    <span>Blog</span><span>FAQ</span><span>Resources ▾</span>
+  </div>
+  <div class="nav-right">
+    <a class="lang-toggle" href="/docs/conservadas/debugging">ES</a>
+    <a class="btn-download" href="/en/#descargas">Download</a>
+  </div>
+</div></nav>
+<div class="banner"><span class="x">✕</span><b>New:</b> 423 specialized agents + integrated local llama.cpp models — no cloud, no subscription</div>
+<div class="wrap layout">
+  <aside class="sidebar"><div class="side-cat"><div class="cat">Getting Started</div><a href="/en/docs/empezar/instalacion">Download & Install</a><a href="/en/docs/empezar/primeros-pasos">First Steps</a><a href="/en/docs/empezar/faq">FAQ</a></div><div class="side-cat"><div class="cat">Local Models</div><a href="/en/docs/modelos/configuracion">Configuration</a><a href="/en/docs/modelos/busqueda-hf">Hugging Face Search</a><a href="/en/docs/modelos/contexto">Context & Memory</a><a href="/en/docs/modelos/gpu">GPU Requirements</a></div><div class="side-cat"><div class="cat">Prometheus AI</div><a href="/en/docs/prometheus-ai/agentes">Automatic Agents (423)</a><a href="/en/docs/prometheus-ai/terminal">Embedded AI Terminal</a><a href="/en/docs/prometheus-ai/memoria">Persistent Memory</a><a href="/en/docs/prometheus-ai/historial">History & Sessions</a></div><div class="side-cat"><div class="cat">Preserved Features</div><a href="/en/docs/conservadas/terminal">Integrated Terminal</a><a href="/en/docs/conservadas/git">Git & Version Control</a><a href="/en/docs/conservadas/debugging" class="active">Debugging</a><a href="/en/docs/conservadas/extensiones">Extensions (Open VSX)</a><a href="/en/docs/conservadas/live-preview">Live Preview</a><a href="/en/docs/conservadas/temas">Themes</a></div></aside>
+  <main><div class="crumb">Home › Docs › Preserved Features › Debugging</div><h1>Debugging</h1>
+<p>VS Code&#39;s built-in debugger is fully preserved in Prometheus Code: configure
+the launch in <code>launch.json</code>, set breakpoints and debug with the Run and Debug
+panel, all inside the editor.</p>
+<h2 id="s0">Configure with launch.json</h2>
+<p>Open the <strong>Run and Debug</strong> view (the ▶ icon in the activity bar) and choose
+<strong>Create a launch.json file</strong>. The editor generates a template with launch
+configurations for the project type it detects (Node.js, Python, etc.) in
+<code>.vscode/launch.json</code>:</p>
+<pre><code class="language-json">{
+  &quot;version&quot;: &quot;0.2.0&quot;,
+  &quot;configurations&quot;: [
+    {
+      &quot;type&quot;: &quot;node&quot;,
+      &quot;request&quot;: &quot;launch&quot;,
+      &quot;name&quot;: &quot;Launch Program&quot;,
+      &quot;program&quot;: &quot;${workspaceFolder}/src/index.js&quot;
+    }
+  ]
+}
+</code></pre>
+<p>Pick the configuration in the dropdown on top and press <strong>F5</strong>.</p>
+<h2 id="s1">Breakpoints</h2>
+<p>A click on the left margin of the editor sets (or removes) a breakpoint: the
+line is marked in red and execution stops there. You can also use <code>F9</code> to
+toggle it without touching the mouse.</p>
+<blockquote>
+<p><strong>Tip:</strong> breakpoints are saved with the workspace, so they are ready the
+next time you open the project.</p>
+</blockquote>
+<h2 id="s2">The debug panel</h2>
+<p>When execution stops, the panel shows the full state:</p>
+<table>
+<thead>
+<tr>
+<th>Section</th>
+<th>What it shows</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Variables</td>
+<td>the variables of the current scope, with live values</td>
+</tr>
+<tr>
+<td>Call Stack</td>
+<td>the stack up to the breakpoint</td>
+</tr>
+<tr>
+<td>Watch</td>
+<td>expressions you defined to follow</td>
+</tr>
+<tr>
+<td>Debug Console</td>
+<td>commands and logs in the program&#39;s context</td>
+</tr>
+</tbody></table>
+<p>The standard controls are always at hand: <strong>Continue</strong> (F5), <strong>Step Over</strong>
+(F10), <strong>Step Into</strong> (F11), <strong>Step Out</strong> (Shift+F11) and <strong>Stop</strong> (Shift+F5).</p>
+<h2 id="s3">What&#39;s next</h2>
+<ul>
+<li><a href="terminal">Integrated Terminal</a> — run the project and watch its logs.</li>
+<li><a href="git">Git &amp; Version Control</a> — commit the code you finished debugging.</li>
+<li><a href="live-preview">Live Preview</a> — the frontend live inside the editor.</li>
+</ul>
+<div class="feedback-box"><span>Was this page helpful?</span><span class="fb-btn">👍</span><span class="fb-btn">👎</span><span style="margin-left:auto;color:#8b949e">Debugging</span></div><div class="prevnext"><a href="/en/docs/prometheus-ai/terminal">← prometheus-ai/terminal</a><a href="/en/docs/conservadas/extensiones">conservadas/extensiones →</a></div></main>
+  <aside class="toc"><div class="t">On this page</div><a href="#s0">Configure with launch.json</a><a href="#s1">Breakpoints</a><a href="#s2">The debug panel</a><a href="#s3">What&#39;s next</a></aside>
+</div>
+<footer><div class="wrap foot-row">
+  <span>🌐 GitHub</span><span>🐦 X</span><span>📺 YouTube</span><span>💬 Reddit</span>
+  <div class="foot-links"><span>Support</span><span>Privacy</span><span>Manage cookies</span><span>Terms of use</span><span>License</span></div>
+</div></footer>
+</body>
+</html>

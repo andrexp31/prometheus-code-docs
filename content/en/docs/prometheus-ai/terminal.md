@@ -17,6 +17,8 @@ The model's terminal does not show up in the editor's terminal panel: it is
 invisible except inside the chat. Every command the AI runs is a block with
 its own prompt line, live output and result:
 
+![Embedded AI terminal as a block inside the Prometheus AI chat](/assets/chat-llamacpp.png)
+
 ```text
 $ pytest tests/ --maxfail=1
 ✓ 184 tests passed  (exit code: 0)

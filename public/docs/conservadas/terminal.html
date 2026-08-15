@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terminal integrada</title>
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<nav class="nav"><div class="wrap nav-inner">
+  <div class="logo"><div class="logo-badge">▲</div> Prometheus Code</div>
+  <div class="nav-links">
+    <a href="/#features">Funciones ▾</a>
+    <a href="/docs/empezar/instalacion" class="active">Docs</a>
+    <a href="/#descargas">Descargas</a>
+    <span>Blog</span><span>FAQ</span><span>Recursos ▾</span>
+  </div>
+  <div class="nav-right">
+    <a class="lang-toggle" href="/en/docs/conservadas/terminal">EN</a>
+    <a class="btn-download" href="/#descargas">Descargar</a>
+  </div>
+</div></nav>
+<div class="banner"><span class="x">✕</span><b>Nuevo:</b> 423 agentes especializados + modelos locales llama.cpp integrados — sin nube, sin suscripción</div>
+<div class="wrap layout">
+  <aside class="sidebar"><div class="side-cat"><div class="cat">Empezar</div><a href="/docs/empezar/instalacion">Descarga e instalación</a><a href="/docs/empezar/primeros-pasos">Primeros pasos</a><a href="/docs/empezar/faq">Preguntas frecuentes</a></div><div class="side-cat"><div class="cat">Modelos locales</div><a href="/docs/modelos/configuracion">Configuración</a><a href="/docs/modelos/busqueda-hf">Búsqueda en Hugging Face</a><a href="/docs/modelos/contexto">Contexto y memoria</a><a href="/docs/modelos/gpu">Requisitos de GPU</a></div><div class="side-cat"><div class="cat">Prometheus AI</div><a href="/docs/prometheus-ai/agentes">Agentes automáticos (423)</a><a href="/docs/prometheus-ai/terminal">Terminal IA embebida</a><a href="/docs/prometheus-ai/memoria">Memoria persistente</a><a href="/docs/prometheus-ai/historial">Historial y sesiones</a></div><div class="side-cat"><div class="cat">Funciones conservadas</div><a href="/docs/conservadas/terminal" class="active">Terminal integrada</a><a href="/docs/conservadas/git">Git y control de versiones</a><a href="/docs/conservadas/debugging">Debugging</a><a href="/docs/conservadas/extensiones">Extensiones (Open VSX)</a><a href="/docs/conservadas/live-preview">Live Preview</a><a href="/docs/conservadas/temas">Temas</a></div></aside>
+  <main><div class="crumb">Inicio › Docs › Funciones conservadas › Terminal integrada</div><h1>Terminal integrada</h1>
+<p>La terminal integrada del panel inferior es la misma de VS Code, conservada
+tal cual: una terminal real, sin emulación web ni contenedores. Abrí una con
+`Ctrl+`` o desde el menú <strong>Terminal → Nueva terminal</strong>, y tenés tu shell
+completo dentro del editor.</p>
+<h2 id="s0">Fish por defecto, zsh y bash también</h2>
+<p>Prometheus Code arranca con <strong>fish</strong> como shell por defecto. Si preferís
+otro, la terminal integrada detecta los shells instalados en el sistema y
+podés elegir zsh o bash desde el menú desplegable de la terminal:</p>
+<table>
+<thead>
+<tr>
+<th>Shell</th>
+<th>Cómo seleccionarla</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>fish</td>
+<td>por defecto</td>
+</tr>
+<tr>
+<td>zsh</td>
+<td>menú de la terminal → <strong>Seleccionar perfil predeterminado</strong></td>
+</tr>
+<tr>
+<td>bash</td>
+<td>menú de la terminal → <strong>Seleccionar perfil predeterminado</strong></td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><strong>Tip:</strong> cada terminal abre en la carpeta abierta en el editor, así que los
+comandos corren directamente sobre tu proyecto.</p>
+</blockquote>
+<h2 id="s1">Varias terminales en paralelo</h2>
+<p>Podés abrir tantas terminales como quieras y organizarlas a tu gusto:</p>
+<table>
+<thead>
+<tr>
+<th>Atajo</th>
+<th>Acción</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>`Ctrl+``</td>
+<td>abrir/cerrar la terminal</td>
+</tr>
+<tr>
+<td><code>Ctrl+Shift+5</code></td>
+<td>dividir la terminal actual</td>
+</tr>
+<tr>
+<td>menú de la terminal</td>
+<td>renombrar, reorganizar, cerrar</td>
+</tr>
+</tbody></table>
+<p>Cada terminal tiene su propio historial y su shell; dividirlas te deja, por
+ejemplo, correr el servidor en una y los tests en la otra.</p>
+<h2 id="s2">Shell integration</h2>
+<p>La terminal integrada detecta el prompt del shell (shell integration) y con
+eso habilita extras: saltar al final de la salida, navegar por bloques de
+comandos y un exit code confiable para saber si el comando funcionó. En fish
+esto funciona por defecto.</p>
+<h2 id="s3">La terminal de la IA es otra cosa</h2>
+<p>Prometheus AI también ejecuta comandos, pero no en tu terminal: los corre en
+una terminal propia embebida dentro del chat, con salida completa y exit code
+(<code>(exit code: 0)</code>). Además puede pedirte correr comandos en tu terminal
+integrada con <code>run_in_terminal</code> y lee la salida completa del resultado. Lo
+detallamos en <a href="../prometheus-ai/terminal">Terminal IA embebida</a>.</p>
+<h2 id="s4">Qué sigue</h2>
+<ul>
+<li><a href="git">Git y control de versiones</a> — staging, commits y diff desde el editor.</li>
+<li><a href="debugging">Debugging</a> — breakpoints, launch.json y el panel de depuración.</li>
+<li><a href="live-preview">Live Preview</a> — la web corriendo en vivo dentro del editor.</li>
+</ul>
+<div class="feedback-box"><span>¿Te resultó útil esta página?</span><span class="fb-btn">👍</span><span class="fb-btn">👎</span><span style="margin-left:auto;color:#8b949e">Terminal integrada</span></div><div class="prevnext"><a href="/docs/conservadas/temas">← conservadas/temas</a><span></span></div></main>
+  <aside class="toc"><div class="t">En esta página</div><a href="#s0">Fish por defecto, zsh y bash también</a><a href="#s1">Varias terminales en paralelo</a><a href="#s2">Shell integration</a><a href="#s3">La terminal de la IA es otra cosa</a><a href="#s4">Qué sigue</a></aside>
+</div>
+<footer><div class="wrap foot-row">
+  <span>🌐 GitHub</span><span>🐦 X</span><span>📺 YouTube</span><span>💬 Reddit</span>
+  <div class="foot-links"><span>Soporte</span><span>Privacidad</span><span>Gestión de cookies</span><span>Términos de uso</span><span>Licencia</span></div>
+</div></footer>
+</body>
+</html>
