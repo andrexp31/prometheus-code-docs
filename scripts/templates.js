@@ -18,7 +18,7 @@ export function renderShell(lang, page) {
   const alt = lang === 'es' ? 'en' : 'es';
   const base = lang === 'es' ? '' : '/en';
   const altBase = lang === 'es' ? '/en' : '';
-  const togglePath = (page.activePath.startsWith('/docs') ? altBase + page.activePath : altBase + '/');
+  const togglePath = (page.activePath && page.activePath !== '/' ? altBase + page.activePath : altBase + '/');
   const sidebar = page.sidebar ? `<aside class="sidebar">${page.sidebar}</aside>` : '';
   const toc = page.toc ? `<aside class="toc"><div class="t">${lang === 'es' ? 'En esta página' : 'On this page'}</div>${page.toc}</aside>` : '';
   const crumb = page.breadcrumb ? `<div class="crumb">${page.breadcrumb}</div>` : '';

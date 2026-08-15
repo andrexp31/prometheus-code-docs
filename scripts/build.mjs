@@ -82,6 +82,26 @@ for (const lang of LANGS) {
 
 await buildHome();
 
+for (const lang of LANGS) {
+  const prefix = base(lang);
+  for (const page of ['release-notes']) {
+    try {
+      const p = await readPage(lang, page);
+      const { html: contentHtml } = buildToc(p.md);
+      const out = join(PUBLIC, lang === 'es' ? '' : 'en', page + '.html');
+      await mkdir(join(out, '..'), { recursive: true });
+      await writeFile(out, renderShell(lang, {
+        title: p.title,
+        html: contentHtml,
+        sidebar: '',
+        toc: '',
+        activePath: '/' + page,
+      }));
+      console.log(`[build] ${prefix}/${page}/`);
+    } catch { /* sin página */ }
+  }
+}
+
 await mkdir(join(PUBLIC, 'assets'), { recursive: true });
 for (const f of await readdir(join(CONTENT, 'assets'))) {
   await copyFile(join(CONTENT, 'assets', f), join(PUBLIC, 'assets', f));

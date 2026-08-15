@@ -38,6 +38,14 @@ body { background: #0d1117; color: #e6edf3; font-family: -apple-system, BlinkMac
 .hero-meta { font-size: 13px; color: #8b949e; }
 .hero-meta a { color: #79c0ff; text-decoration: none; }
 
+.home main { max-width: 780px; margin: 0 auto; padding: 64px 0; }
+.home main h1 { font-size: 30px; font-weight: 700; letter-spacing: -.5px; margin: 8px 0 16px; }
+.home main h2 { font-size: 24px; font-weight: 700; margin: 32px 0 12px; }
+.home main p { color: #c9d1d9; font-size: 15px; margin-bottom: 14px; }
+.home main ul { margin: 0 0 14px 20px; }
+.home main li { color: #c9d1d9; font-size: 15px; margin-bottom: 6px; }
+.home main a { color: #79c0ff; }
+
 .layout { display: grid; grid-template-columns: 260px 1fr 220px; gap: 32px; padding: 32px 0 64px; align-items: start; }
 
 .crumb { font-size: 13px; color: #8b949e; margin-bottom: 10px; }
