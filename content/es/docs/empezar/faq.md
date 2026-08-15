@@ -5,14 +5,15 @@ category: Empezar
 
 # Preguntas frecuentes
 
-## ¿Es gratis?
+## ¿Cuánto cuesta?
 
-Sí. Prometheus Code es MIT: el editor es gratis, sin suscripciones, sin
-cuentas y sin funciones bloqueadas. Los modelos locales son de código abierto
-(GGUF) y las extensiones del ecosistema se instalan desde Open VSX.
+Prometheus Code es MIT y se paga una sola vez: licencia de pago único, sin
+suscripciones, sin cuentas y sin funciones bloqueadas. Los modelos locales son
+de código abierto (GGUF) y las extensiones del ecosistema se instalan desde
+Open VSX.
 
-> **No hay versión de pago:** nada del editor depende de un plan pago. Lo
-> único opcional es una GPU mejor, que solo acelera las respuestas.
+> **Pago único, sin sorpresas:** no hay planes ni renovaciones. Lo único
+> opcional es una GPU mejor, que solo acelera las respuestas.
 
 ## ¿Necesito una GPU?
 
@@ -38,8 +39,8 @@ que trabajan en tu proyecto.
 ## ¿Qué extensiones puedo instalar?
 
 Prometheus Code usa **Open VSX**, el marketplace abierto de extensiones de VS
-Code. Además, el editor incluye el **Prometheus Code Extension Pack**, que
-instala la extensión **Prometheus AI** y el resto del ecosistema del editor.
+Code. El chat de Prometheus AI, los agentes automáticos y los modelos locales
+vienen integrados en el editor, sin necesidad de extensiones extra.
 
 ## ¿Mis datos se envían a la nube?
 

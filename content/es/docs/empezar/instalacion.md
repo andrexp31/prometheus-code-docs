@@ -10,9 +10,9 @@ integra modelos LLM locales, chat de IA y agentes automáticos directamente en
 el editor, sin telemetría y sin nube. Se distribuye como paquete nativo de
 Linux, y también se puede ejecutar desde el código fuente.
 
-> **Gratis y sin registro:** Prometheus Code es MIT. No hay suscripciones, ni
-> cuentas, ni descargas condicionadas: instalás y el editor queda listo para
-> usar.
+> **Pago único, sin registro:** Prometheus Code es MIT. Pagás una sola vez y
+> no hay suscripciones, ni cuentas, ni descargas condicionadas: instalás y el
+> editor queda listo para usar.
 
 ## Paquetes
 

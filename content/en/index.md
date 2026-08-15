@@ -68,8 +68,8 @@ $ <span class="c-fn">pytest</span> tests/ <span class="c-num">--maxfail=1</span>
 <section id="descargas">
   <div class="wrap">
     <div class="cta">
-      <h3>Start building with AI for free</h3>
-      <p>No card, no cloud, no subscription — just your GPU and 423 agents.</p>
+      <h3>One-time payment, no subscription</h3>
+      <p>No cloud, no telemetry — just your GPU and 423 agents.</p>
       <a class="btn" href="#descargas">Download Prometheus Code</a>
     </div>
   </div>

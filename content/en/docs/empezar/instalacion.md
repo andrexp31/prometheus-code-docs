@@ -10,8 +10,9 @@ integrates local LLM models, an AI chat and automatic agents directly into the
 editor, with no telemetry and no cloud. It ships as a native Linux package,
 and can also be run from source.
 
-> **Free, no sign-up:** Prometheus Code is MIT. No subscriptions, no accounts,
-> no gated downloads: install it and the editor is ready to use.
+> **One-time payment, no sign-up:** Prometheus Code is MIT. You pay once — no
+> subscriptions, no accounts, no gated downloads: install it and the editor is
+> ready to use.
 
 ## Packages
 
