@@ -30,7 +30,7 @@ eliminadas resaltadas. Desde el propio diff podés revertir cambios puntuales
 antes de commitear.
 
 > **Nota:** el diff funciona también contra el último commit y contra
-> cualquier versión del historial, no solo contra los cambios sin guardar.
+> cualquier versión del historial, no solo contra los cambios sin commitear.
 
 ## Ramas
 

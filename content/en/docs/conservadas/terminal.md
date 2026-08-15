@@ -7,7 +7,7 @@ category: Preserved Features
 
 The integrated terminal in the bottom panel is the same one from VS Code,
 preserved as is: a real terminal, no web emulation, no containers. Open one
-with `Ctrl+`` or from the **Terminal → New Terminal** menu, and you have your
+with ``Ctrl+` ``` or from the **Terminal → New Terminal** menu, and you have your
 full shell inside the editor.
 
 ## Fish by default, zsh and bash too
@@ -31,7 +31,7 @@ You can open as many terminals as you want and organize them as you like:
 
 | Shortcut | Action |
 |---|---|
-| `Ctrl+`` | toggle terminal |
+| ``Ctrl+` ``` | toggle terminal |
 | `Ctrl+Shift+5` | split the current terminal |
 | terminal menu | rename, rearrange, close |
 

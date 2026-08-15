@@ -1,6 +1,6 @@
 ---
 title: Live Preview
-category: Preserved Features
+category: Prometheus AI
 ---
 
 # Live Preview
@@ -35,8 +35,8 @@ project live, with reload on save.
 
 ## What's next
 
-- [Extensions (Open VSX)](extensiones) — frontend tools from the open
+- [Extensions (Open VSX)](../conservadas/extensiones) — frontend tools from the open
   registry.
-- [Integrated Terminal](terminal) — run the project from the terminal while
+- [Integrated Terminal](../conservadas/terminal) — run the project from the terminal while
   watching the preview.
-- [Themes](temas) — make the editor your own.
+- [Themes](../conservadas/temas) — make the editor your own.

@@ -25,18 +25,11 @@ authors.
 > only be published on the private marketplace. Open VSX hosts the
 > open-source versions, which is where Prometheus Code's ecosystem lives.
 
-## The official pack
+## Built in, not as an extension
 
-The editor has an official extension pack published on Open VSX, which you
-can search as:
-
-```
-Prometheus Code Extension Pack
-```
-
-It includes the **Prometheus AI** extension — the chat and the automatic
-agents — plus the rest of the editor's ecosystem, all under free licenses.
-If you install it on another setup, your environment looks exactly the same.
+The Prometheus AI chat, the automatic agents and the local models are built
+into the editor — you don't need to install any extension to use them. Open
+VSX stays for the community extensions you want to add.
 
 ## What's next
 

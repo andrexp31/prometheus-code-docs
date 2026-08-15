@@ -7,7 +7,7 @@ category: Funciones conservadas
 
 La terminal integrada del panel inferior es la misma de VS Code, conservada
 tal cual: una terminal real, sin emulación web ni contenedores. Abrí una con
-`Ctrl+`` o desde el menú **Terminal → Nueva terminal**, y tenés tu shell
+``Ctrl+` ``` o desde el menú **Terminal → Nueva terminal**, y tenés tu shell
 completo dentro del editor.
 
 ## Fish por defecto, zsh y bash también
@@ -31,7 +31,7 @@ Podés abrir tantas terminales como quieras y organizarlas a tu gusto:
 
 | Atajo | Acción |
 |---|---|
-| `Ctrl+`` | abrir/cerrar la terminal |
+| ``Ctrl+` ``` | abrir/cerrar la terminal |
 | `Ctrl+Shift+5` | dividir la terminal actual |
 | menú de la terminal | renombrar, reorganizar, cerrar |
 

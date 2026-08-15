@@ -63,13 +63,13 @@ export function buildSidebar(lang, activePath) {
   const cats = lang === 'es' ? [
     ['Empezar', [['docs/empezar/instalacion', 'Descarga e instalación'], ['docs/empezar/primeros-pasos', 'Primeros pasos'], ['docs/empezar/faq', 'Preguntas frecuentes']]],
     ['Modelos locales', [['docs/modelos/configuracion', 'Configuración'], ['docs/modelos/busqueda-hf', 'Búsqueda en Hugging Face'], ['docs/modelos/contexto', 'Contexto y memoria'], ['docs/modelos/gpu', 'Requisitos de GPU']]],
-    ['Prometheus AI', [['docs/prometheus-ai/agentes', 'Agentes automáticos (423)'], ['docs/prometheus-ai/terminal', 'Terminal IA embebida'], ['docs/prometheus-ai/memoria', 'Memoria persistente'], ['docs/prometheus-ai/historial', 'Historial y sesiones']]],
-    ['Funciones conservadas', [['docs/conservadas/terminal', 'Terminal integrada'], ['docs/conservadas/git', 'Git y control de versiones'], ['docs/conservadas/debugging', 'Debugging'], ['docs/conservadas/extensiones', 'Extensiones (Open VSX)'], ['docs/conservadas/live-preview', 'Live Preview'], ['docs/conservadas/temas', 'Temas']]],
+    ['Prometheus AI', [['docs/prometheus-ai/agentes', 'Agentes automáticos (423)'], ['docs/prometheus-ai/terminal', 'Terminal IA embebida'], ['docs/prometheus-ai/memoria', 'Memoria persistente'], ['docs/prometheus-ai/historial', 'Historial y sesiones'], ['docs/prometheus-ai/live-preview', 'Live Preview']]],
+    ['Funciones conservadas', [['docs/conservadas/terminal', 'Terminal integrada'], ['docs/conservadas/git', 'Git y control de versiones'], ['docs/conservadas/debugging', 'Debugging'], ['docs/conservadas/extensiones', 'Extensiones (Open VSX)'], ['docs/conservadas/temas', 'Temas']]],
   ] : [
     ['Getting Started', [['docs/empezar/instalacion', 'Download & Install'], ['docs/empezar/primeros-pasos', 'First Steps'], ['docs/empezar/faq', 'FAQ']]],
     ['Local Models', [['docs/modelos/configuracion', 'Configuration'], ['docs/modelos/busqueda-hf', 'Hugging Face Search'], ['docs/modelos/contexto', 'Context & Memory'], ['docs/modelos/gpu', 'GPU Requirements']]],
-    ['Prometheus AI', [['docs/prometheus-ai/agentes', 'Automatic Agents (423)'], ['docs/prometheus-ai/terminal', 'Embedded AI Terminal'], ['docs/prometheus-ai/memoria', 'Persistent Memory'], ['docs/prometheus-ai/historial', 'History & Sessions']]],
-    ['Preserved Features', [['docs/conservadas/terminal', 'Integrated Terminal'], ['docs/conservadas/git', 'Git & Version Control'], ['docs/conservadas/debugging', 'Debugging'], ['docs/conservadas/extensiones', 'Extensions (Open VSX)'], ['docs/conservadas/live-preview', 'Live Preview'], ['docs/conservadas/temas', 'Themes']]],
+    ['Prometheus AI', [['docs/prometheus-ai/agentes', 'Automatic Agents (423)'], ['docs/prometheus-ai/terminal', 'Embedded AI Terminal'], ['docs/prometheus-ai/memoria', 'Persistent Memory'], ['docs/prometheus-ai/historial', 'History & Sessions'], ['docs/prometheus-ai/live-preview', 'Live Preview']]],
+    ['Preserved Features', [['docs/conservadas/terminal', 'Integrated Terminal'], ['docs/conservadas/git', 'Git & Version Control'], ['docs/conservadas/debugging', 'Debugging'], ['docs/conservadas/extensiones', 'Extensions (Open VSX)'], ['docs/conservadas/temas', 'Themes']]],
   ];
   const base = lang === 'es' ? '' : '/en';
   return cats.map(([cat, items]) => `<div class="side-cat"><div class="cat">${cat}</div>` +

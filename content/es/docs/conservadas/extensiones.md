@@ -25,18 +25,12 @@ autores.
 > publicada en el marketplace privado. En Open VSX se publican las versiones
 > de código abierto, que es donde vive el ecosistema de Prometheus Code.
 
-## El pack oficial
+## Integrado, no como extensión
 
-El editor tiene un pack oficial de extensiones publicado en Open VSX, que
-podés buscar como:
-
-```
-Prometheus Code Extension Pack
-```
-
-Incluye la extensión **Prometheus AI** — el chat y los agentes automáticos —
-y el resto del ecosistema del editor, todo con licencia libre. Si lo
-instalás en otra instalación, tu entorno queda igual.
+El chat de Prometheus AI, los agentes automáticos y los modelos locales vienen
+integrados en el editor — no necesitás instalar ninguna extensión para
+usarlos. Open VSX queda para las extensiones de la comunidad que quieras
+agregar.
 
 ## Qué sigue
 

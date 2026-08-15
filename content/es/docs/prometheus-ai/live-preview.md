@@ -1,6 +1,6 @@
 ---
 title: Live Preview
-category: Funciones conservadas
+category: Prometheus AI
 ---
 
 # Live Preview
@@ -36,8 +36,8 @@ proyecto en vivo, con recarga al guardar.
 
 ## Qué sigue
 
-- [Extensiones (Open VSX)](extensiones) — herramientas de frontend desde el
+- [Extensiones (Open VSX)](../conservadas/extensiones) — herramientas de frontend desde el
   registro abierto.
-- [Terminal integrada](terminal) — correr el proyecto desde la terminal
+- [Terminal integrada](../conservadas/terminal) — correr el proyecto desde la terminal
   mientras ves el preview.
-- [Temas](temas) — dejar el editor a tu gusto.
+- [Temas](../conservadas/temas) — dejar el editor a tu gusto.
