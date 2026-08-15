@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>First Steps</title>
+<link rel="stylesheet" href="/en/assets/site.css">
+</head>
+<body>
+<nav class="nav"><div class="wrap nav-inner">
+  <div class="logo"><div class="logo-badge">▲</div> Prometheus Code</div>
+  <div class="nav-links">
+    <a href="/en/#features">Features ▾</a>
+    <a href="/en/docs/empezar/instalacion" class="active">Docs</a>
+    <a href="/en/#descargas">Downloads</a>
+    <span>Blog</span><span>FAQ</span><span>Resources ▾</span>
+  </div>
+  <div class="nav-right">
+    <a class="lang-toggle" href="/docs/empezar/primeros-pasos">ES</a>
+    <a class="btn-download" href="/en/#descargas">Download</a>
+  </div>
+</div></nav>
+<div class="banner"><span class="x">✕</span><b>New:</b> 423 specialized agents + integrated local llama.cpp models — no cloud, no subscription</div>
+<div class="wrap layout">
+  <aside class="sidebar"><div class="side-cat"><div class="cat">Getting Started</div><a href="/en/docs/empezar/instalacion">Download & Install</a><a href="/en/docs/empezar/primeros-pasos" class="active">First Steps</a><a href="/en/docs/empezar/faq">FAQ</a></div><div class="side-cat"><div class="cat">Local Models</div><a href="/en/docs/modelos/configuracion">Configuration</a><a href="/en/docs/modelos/busqueda-hf">Hugging Face Search</a><a href="/en/docs/modelos/contexto">Context & Memory</a><a href="/en/docs/modelos/gpu">GPU Requirements</a></div><div class="side-cat"><div class="cat">Prometheus AI</div><a href="/en/docs/prometheus-ai/agentes">Automatic Agents (423)</a><a href="/en/docs/prometheus-ai/terminal">Embedded AI Terminal</a><a href="/en/docs/prometheus-ai/memoria">Persistent Memory</a><a href="/en/docs/prometheus-ai/historial">History & Sessions</a></div><div class="side-cat"><div class="cat">Preserved Features</div><a href="/en/docs/conservadas/terminal">Integrated Terminal</a><a href="/en/docs/conservadas/git">Git & Version Control</a><a href="/en/docs/conservadas/debugging">Debugging</a><a href="/en/docs/conservadas/extensiones">Extensions (Open VSX)</a><a href="/en/docs/conservadas/live-preview">Live Preview</a><a href="/en/docs/conservadas/temas">Themes</a></div></aside>
+  <main><div class="crumb">Home › Docs › Getting Started › First Steps</div><h1>First Steps</h1>
+<p>This guide walks the full flow: turn on the local model engine, download your
+first model, chat with Prometheus AI, and have the AI work on your project.
+Everything runs on your machine.</p>
+<h2 id="s0">Your first chat with Prometheus AI</h2>
+<p>Prometheus AI is the editor&#39;s native chat. Open it from the activity bar icon
+and say hello; the model answers in the conversation, just like a regular
+chat.</p>
+<p><img src="/assets/chat-saludo.png" alt="Prometheus AI chat replying to a greeting"></p>
+<blockquote>
+<p><strong>Note:</strong> the first answer may take a few seconds while the model loads
+into memory. Subsequent conversations are instant.</p>
+</blockquote>
+<h2 id="s1">Turn on the local engine</h2>
+<p>Models run with llama.cpp, integrated into the editor. To turn it on:</p>
+<ol>
+<li>Click the 🦙 icon in the activity bar (the icon turns white = engine
+active).</li>
+<li>On first use, the editor compiles <code>llama-server</code> locally (with CUDA
+support if you have NVIDIA). Progress is shown in the panel.</li>
+<li>When the status turns <strong>READY</strong>, the engine is answering on
+<code>127.0.0.1:11434</code>.</li>
+</ol>
+<blockquote>
+<p><strong>Ollama compatible:</strong> Prometheus Code uses the same <code>llama-server</code> as
+Ollama, on the same port (11434). If you already have models downloaded
+with Ollama, you can point to them from the panel and they work directly.</p>
+</blockquote>
+<h2 id="s2">Download a model from Hugging Face</h2>
+<p>With the llama.cpp panel open:</p>
+<ol>
+<li>In <strong>Hugging Face catalog</strong>, search for a GGUF model (e.g. <code>qwen gguf</code>).</li>
+<li>Pick the quantization: <code>Q4_K_M</code> (less VRAM) or <code>Q8_0</code> (more quality).</li>
+<li>Click <strong>Download</strong> — downloads pause and resume, and keep running in the
+background even if you close the panel.</li>
+<li>Click <strong>Activate</strong> on the downloaded model.</li>
+</ol>
+<p>The model is stored in <code>~/.prometheus-code/llamacpp/models/</code> and remembered
+between sessions.</p>
+<h2 id="s3">Configure the model from the LlamaCpp panel</h2>
+<p>The panel exposes the server controls:</p>
+<table>
+<thead>
+<tr>
+<th>Control</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Context</td>
+<td>Context window (<code>-c</code>), e.g. 8192 tokens</td>
+</tr>
+<tr>
+<td>GPU layers</td>
+<td>How many layers are offloaded to the GPU (<code>-ngl</code>)</td>
+</tr>
+<tr>
+<td>Temperature</td>
+<td>Creativity of the responses</td>
+</tr>
+<tr>
+<td>Advanced</td>
+<td>Flash attention, threads, quantized KV cache</td>
+</tr>
+</tbody></table>
+<p>Every change is applied with the <strong>Apply</strong> button, which restarts the server
+with the new parameters. The VRAM in use is shown in the panel.</p>
+<h2 id="s4">Have the AI work on your project</h2>
+<p>Prometheus AI can pick the right specialist on its own. Type a task in the
+chat and watch it search for and adopt an agent:</p>
+<pre><code class="language-text">&gt; &quot;Write tests for the payments module&quot;
+search_agents(&quot;python testing&quot;)
+→ 1. python-tester [Development] (catalog): generates and runs pytest tests
+use_agent(&quot;python-tester&quot;)
+→ Adopting role: python-tester…
+$ pytest tests/ --maxfail=1
+✓ 184 tests passed  (exit code: 0)
+</code></pre>
+<p>Commands the AI runs appear as blocks inside the chat itself, with live
+output and the exit code. If a command asks for a password (for example
+<code>sudo</code>), the chat lets you type it right there.</p>
+<blockquote>
+<p><strong>Tip:</strong> the model&#39;s terminal is hidden from the terminal panel — yours is
+untouched. Each AI command lives as one more message in the conversation.</p>
+</blockquote>
+<h2 id="s5">Install extensions</h2>
+<p>Prometheus Code uses <strong>Open VSX</strong> as its marketplace, the open extension
+registry of VS Code. From the extensions panel search for the official pack:</p>
+<pre><code>Prometheus Code Extension Pack
+</code></pre>
+<p>It includes the <strong>Prometheus AI</strong> extension and the rest of the editor&#39;s
+ecosystem, all under free licenses.</p>
+<h2 id="s6">What&#39;s next</h2>
+<ul>
+<li><a href="faq">FAQ</a> — pricing, GPU, Ollama and more.</li>
+</ul>
+<div class="feedback-box"><span>Was this page helpful?</span><span class="fb-btn">👍</span><span class="fb-btn">👎</span><span style="margin-left:auto;color:#8b949e">First Steps</span></div><div class="prevnext"><a href="/en/docs/empezar/instalacion">← empezar/instalacion</a><span></span></div></main>
+  <aside class="toc"><div class="t">On this page</div><a href="#s0">Your first chat with Prometheus AI</a><a href="#s1">Turn on the local engine</a><a href="#s2">Download a model from Hugging Face</a><a href="#s3">Configure the model from the LlamaCpp panel</a><a href="#s4">Have the AI work on your project</a><a href="#s5">Install extensions</a><a href="#s6">What&#39;s next</a></aside>
+</div>
+<footer><div class="wrap foot-row">
+  <span>🌐 GitHub</span><span>🐦 X</span><span>📺 YouTube</span><span>💬 Reddit</span>
+  <div class="foot-links"><span>Support</span><span>Privacy</span><span>Manage cookies</span><span>Terms of use</span><span>License</span></div>
+</div></footer>
+</body>
+</html>

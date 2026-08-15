@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Download & Install</title>
+<link rel="stylesheet" href="/en/assets/site.css">
+</head>
+<body>
+<nav class="nav"><div class="wrap nav-inner">
+  <div class="logo"><div class="logo-badge">▲</div> Prometheus Code</div>
+  <div class="nav-links">
+    <a href="/en/#features">Features ▾</a>
+    <a href="/en/docs/empezar/instalacion" class="active">Docs</a>
+    <a href="/en/#descargas">Downloads</a>
+    <span>Blog</span><span>FAQ</span><span>Resources ▾</span>
+  </div>
+  <div class="nav-right">
+    <a class="lang-toggle" href="/docs/empezar/instalacion">ES</a>
+    <a class="btn-download" href="/en/#descargas">Download</a>
+  </div>
+</div></nav>
+<div class="banner"><span class="x">✕</span><b>New:</b> 423 specialized agents + integrated local llama.cpp models — no cloud, no subscription</div>
+<div class="wrap layout">
+  <aside class="sidebar"><div class="side-cat"><div class="cat">Getting Started</div><a href="/en/docs/empezar/instalacion" class="active">Download & Install</a><a href="/en/docs/empezar/primeros-pasos">First Steps</a><a href="/en/docs/empezar/faq">FAQ</a></div><div class="side-cat"><div class="cat">Local Models</div><a href="/en/docs/modelos/configuracion">Configuration</a><a href="/en/docs/modelos/busqueda-hf">Hugging Face Search</a><a href="/en/docs/modelos/contexto">Context & Memory</a><a href="/en/docs/modelos/gpu">GPU Requirements</a></div><div class="side-cat"><div class="cat">Prometheus AI</div><a href="/en/docs/prometheus-ai/agentes">Automatic Agents (423)</a><a href="/en/docs/prometheus-ai/terminal">Embedded AI Terminal</a><a href="/en/docs/prometheus-ai/memoria">Persistent Memory</a><a href="/en/docs/prometheus-ai/historial">History & Sessions</a></div><div class="side-cat"><div class="cat">Preserved Features</div><a href="/en/docs/conservadas/terminal">Integrated Terminal</a><a href="/en/docs/conservadas/git">Git & Version Control</a><a href="/en/docs/conservadas/debugging">Debugging</a><a href="/en/docs/conservadas/extensiones">Extensions (Open VSX)</a><a href="/en/docs/conservadas/live-preview">Live Preview</a><a href="/en/docs/conservadas/temas">Themes</a></div></aside>
+  <main><div class="crumb">Home › Docs › Getting Started › Download & Install</div><h1>Download &amp; Install</h1>
+<p>Prometheus Code is a fork of VS Code (Code - OSS) with its own identity: it
+integrates local LLM models, an AI chat and automatic agents directly into the
+editor, with no telemetry and no cloud. It ships as a native Linux package,
+and can also be run from source.</p>
+<blockquote>
+<p><strong>Free, no sign-up:</strong> Prometheus Code is MIT. No subscriptions, no accounts,
+no gated downloads: install it and the editor is ready to use.</p>
+</blockquote>
+<h2 id="s0">Packages</h2>
+<table>
+<thead>
+<tr>
+<th>Platform</th>
+<th>Format</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Linux (Debian/Ubuntu)</td>
+<td><code>.deb</code></td>
+</tr>
+<tr>
+<td>Linux (any distro)</td>
+<td><code>.tar.gz</code></td>
+</tr>
+<tr>
+<td>Linux (portable)</td>
+<td><code>.AppImage</code></td>
+</tr>
+</tbody></table>
+<p>Pick the package for your distribution, install it as usual, and look for
+<strong>Prometheus Code</strong> in your applications menu.</p>
+<blockquote>
+<p><strong>Note:</strong> the full editor ships inside the package. The local model engine
+(llama-server) is compiled automatically the first time you turn it on —
+covered in <a href="primeros-pasos">First Steps</a>.</p>
+</blockquote>
+<h2 id="s1">System requirements</h2>
+<table>
+<thead>
+<tr>
+<th>Resource</th>
+<th>Minimum</th>
+<th>Recommended</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>RAM</td>
+<td>8 GB</td>
+<td>16 GB</td>
+</tr>
+<tr>
+<td>Disk</td>
+<td>10 GB</td>
+<td>20 GB</td>
+</tr>
+<tr>
+<td>Node.js (source only)</td>
+<td>20.x</td>
+<td>22.x</td>
+</tr>
+</tbody></table>
+<p>For GPU-accelerated local models you also need an NVIDIA GPU with CUDA
+(llama-server is compiled with CUDA support on first use). Without a GPU,
+everything runs on CPU, just with slower responses.</p>
+<h2 id="s2">From source</h2>
+<pre><code class="language-bash">git clone https://github.com/andrexp31/prometheus-code-desktop.git
+cd prometheus-code-desktop/Prometheus-Code
+npm install
+npm run compile-client
+</code></pre>
+<p>Prerequisites: Node.js 20+, Python 3, and a C/C++ toolchain (GCC or Clang).
+To launch the compiled editor in development mode:</p>
+<pre><code class="language-bash">./scripts/code.sh
+</code></pre>
+<h2 id="s3">First launch</h2>
+<p>When you open Prometheus Code for the first time, the editor starts with the
+welcome screen, which summarizes the main features: local models, Prometheus
+AI chat, automatic agents, integrated terminal, full privacy, and Git and
+debugging preserved from VS Code.</p>
+<p><img src="/assets/editor-bienvenida.png" alt="Prometheus Code welcome screen when the editor opens"></p>
+<blockquote>
+<p><strong>Tip:</strong> press <code>Ctrl+Shift+P</code> to open the command palette and search for
+any action, just like in VS Code. Everything you know from the editor is
+still here.</p>
+</blockquote>
+<h2 id="s4">What&#39;s next</h2>
+<p>With the editor installed, the next step is turning on the local engine and
+having your first chat with Prometheus AI: <a href="primeros-pasos">First Steps</a>.</p>
+<div class="feedback-box"><span>Was this page helpful?</span><span class="fb-btn">👍</span><span class="fb-btn">👎</span><span style="margin-left:auto;color:#8b949e">Download & Install</span></div><div class="prevnext"><a href="/en/docs/empezar/faq">← empezar/faq</a><a href="/en/docs/empezar/primeros-pasos">empezar/primeros-pasos →</a></div></main>
+  <aside class="toc"><div class="t">On this page</div><a href="#s0">Packages</a><a href="#s1">System requirements</a><a href="#s2">From source</a><a href="#s3">First launch</a><a href="#s4">What&#39;s next</a></aside>
+</div>
+<footer><div class="wrap foot-row">
+  <span>🌐 GitHub</span><span>🐦 X</span><span>📺 YouTube</span><span>💬 Reddit</span>
+  <div class="foot-links"><span>Support</span><span>Privacy</span><span>Manage cookies</span><span>Terms of use</span><span>License</span></div>
+</div></footer>
+</body>
+</html>

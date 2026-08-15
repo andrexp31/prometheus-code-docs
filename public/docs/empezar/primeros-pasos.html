@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Primeros pasos</title>
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<nav class="nav"><div class="wrap nav-inner">
+  <div class="logo"><div class="logo-badge">▲</div> Prometheus Code</div>
+  <div class="nav-links">
+    <a href="/#features">Funciones ▾</a>
+    <a href="/docs/empezar/instalacion" class="active">Docs</a>
+    <a href="/#descargas">Descargas</a>
+    <span>Blog</span><span>FAQ</span><span>Recursos ▾</span>
+  </div>
+  <div class="nav-right">
+    <a class="lang-toggle" href="/en/docs/empezar/primeros-pasos">EN</a>
+    <a class="btn-download" href="/#descargas">Descargar</a>
+  </div>
+</div></nav>
+<div class="banner"><span class="x">✕</span><b>Nuevo:</b> 423 agentes especializados + modelos locales llama.cpp integrados — sin nube, sin suscripción</div>
+<div class="wrap layout">
+  <aside class="sidebar"><div class="side-cat"><div class="cat">Empezar</div><a href="/docs/empezar/instalacion">Descarga e instalación</a><a href="/docs/empezar/primeros-pasos" class="active">Primeros pasos</a><a href="/docs/empezar/faq">Preguntas frecuentes</a></div><div class="side-cat"><div class="cat">Modelos locales</div><a href="/docs/modelos/configuracion">Configuración</a><a href="/docs/modelos/busqueda-hf">Búsqueda en Hugging Face</a><a href="/docs/modelos/contexto">Contexto y memoria</a><a href="/docs/modelos/gpu">Requisitos de GPU</a></div><div class="side-cat"><div class="cat">Prometheus AI</div><a href="/docs/prometheus-ai/agentes">Agentes automáticos (423)</a><a href="/docs/prometheus-ai/terminal">Terminal IA embebida</a><a href="/docs/prometheus-ai/memoria">Memoria persistente</a><a href="/docs/prometheus-ai/historial">Historial y sesiones</a></div><div class="side-cat"><div class="cat">Funciones conservadas</div><a href="/docs/conservadas/terminal">Terminal integrada</a><a href="/docs/conservadas/git">Git y control de versiones</a><a href="/docs/conservadas/debugging">Debugging</a><a href="/docs/conservadas/extensiones">Extensiones (Open VSX)</a><a href="/docs/conservadas/live-preview">Live Preview</a><a href="/docs/conservadas/temas">Temas</a></div></aside>
+  <main><div class="crumb">Inicio › Docs › Empezar › Primeros pasos</div><h1>Primeros pasos</h1>
+<p>Esta guía recorre el flujo completo: encender el motor de modelos locales,
+descargar tu primer modelo, chatear con Prometheus AI y pedirle a la IA que
+trabaje en tu proyecto. Todo corre en tu máquina.</p>
+<h2 id="s0">Tu primer chat con Prometheus AI</h2>
+<p>Prometheus AI es el chat nativo del editor. Abrilo desde el icono de la barra
+de actividades y escribí un saludo; el modelo responde en la conversación,
+igual que en un chat normal.</p>
+<p><img src="/assets/chat-saludo.png" alt="Chat de Prometheus AI respondiendo un saludo"></p>
+<blockquote>
+<p><strong>Nota:</strong> la primera respuesta puede tardar unos segundos mientras el
+modelo se carga en memoria. Las conversaciones siguientes son inmediatas.</p>
+</blockquote>
+<h2 id="s1">Encender el motor local</h2>
+<p>Los modelos corren con llama.cpp, integrado en el editor. Para encenderlo:</p>
+<ol>
+<li>Hacé clic en el icono 🦙 de la barra de actividades (el icono se pone
+blanco = motor activo).</li>
+<li>La primera vez, el editor compila <code>llama-server</code> localmente (con soporte
+CUDA si tenés NVIDIA). El progreso se ve en el panel.</li>
+<li>Cuando el estado pase a <strong>READY</strong>, el motor ya responde en
+<code>127.0.0.1:11434</code>.</li>
+</ol>
+<blockquote>
+<p><strong>Ollama compatible:</strong> Prometheus Code usa el mismo <code>llama-server</code> que
+Ollama, en el mismo puerto (11434). Si ya tenés modelos descargados con
+Ollama, podés apuntarlos desde el panel y funcionan directamente.</p>
+</blockquote>
+<h2 id="s2">Descargar un modelo desde Hugging Face</h2>
+<p>Con el panel de llama.cpp abierto:</p>
+<ol>
+<li>En <strong>Catálogo Hugging Face</strong>, buscá un modelo GGUF (ej. <code>qwen gguf</code>).</li>
+<li>Elegí la cuantización: <code>Q4_K_M</code> (menos VRAM) o <code>Q8_0</code> (más calidad).</li>
+<li>Clic en <strong>Descargar</strong> — la descarga se pausa y resume, y sigue en segundo
+plano aunque cierres el panel.</li>
+<li>Clic en <strong>Activar</strong> sobre el modelo descargado.</li>
+</ol>
+<p>El modelo queda en <code>~/.prometheus-code/llamacpp/models/</code> y se recuerda entre
+sesiones.</p>
+<h2 id="s3">Configurar el modelo desde el panel LlamaCpp</h2>
+<p>El panel expone los controles del servidor:</p>
+<table>
+<thead>
+<tr>
+<th>Control</th>
+<th>Qué hace</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Contexto</td>
+<td>Ventana de contexto (<code>-c</code>), p. ej. 8192 tokens</td>
+</tr>
+<tr>
+<td>Capas GPU</td>
+<td>Cuántas capas offloadea a la GPU (<code>-ngl</code>)</td>
+</tr>
+<tr>
+<td>Temperatura</td>
+<td>Creatividad de las respuestas</td>
+</tr>
+<tr>
+<td>Avanzado</td>
+<td>Flash attention, threads, KV cache cuantizada</td>
+</tr>
+</tbody></table>
+<p>Cada cambio se aplica con el botón <strong>Aplicar</strong>, que reinicia el servidor con
+los nuevos parámetros. La VRAM usada se muestra en el panel.</p>
+<h2 id="s4">Pedirle a la IA que trabaje en el proyecto</h2>
+<p>Prometheus AI puede elegir sola al especialista adecuado. En el chat escribí
+una tarea y observá cómo busca y adopta un agente:</p>
+<pre><code class="language-text">&gt; &quot;Escribí tests para el módulo de pagos&quot;
+search_agents(&quot;python testing&quot;)
+→ 1. python-tester [Desarrollo] (catálogo): genera y corre tests de pytest
+use_agent(&quot;python-tester&quot;)
+→ Adoptando rol: python-tester…
+$ pytest tests/ --maxfail=1
+✓ 184 tests passed  (exit code: 0)
+</code></pre>
+<p>Los comandos que ejecuta la IA aparecen como bloques dentro del propio chat,
+con la salida en vivo y el exit code. Si un comando pide contraseña (por
+ejemplo <code>sudo</code>), el chat te deja tipearla ahí mismo.</p>
+<blockquote>
+<p><strong>Tip:</strong> la terminal del modelo está oculta del panel de terminales — la
+tuya no se toca. Cada comando de la IA vive como un mensaje más de la
+conversación.</p>
+</blockquote>
+<h2 id="s5">Instalar extensiones</h2>
+<p>Prometheus Code usa <strong>Open VSX</strong> como marketplace, el registro abierto de
+extensiones de VS Code. Desde el panel de extensiones buscá el pack oficial:</p>
+<pre><code>Prometheus Code Extension Pack
+</code></pre>
+<p>Incluye la extensión <strong>Prometheus AI</strong> y el resto del ecosistema del editor,
+todo con licencia libre.</p>
+<h2 id="s6">Próximos pasos</h2>
+<ul>
+<li><a href="faq">Preguntas frecuentes</a> — precios, GPU, Ollama y más.</li>
+</ul>
+<div class="feedback-box"><span>¿Te resultó útil esta página?</span><span class="fb-btn">👍</span><span class="fb-btn">👎</span><span style="margin-left:auto;color:#8b949e">Primeros pasos</span></div><div class="prevnext"><a href="/docs/empezar/instalacion">← empezar/instalacion</a><span></span></div></main>
+  <aside class="toc"><div class="t">En esta página</div><a href="#s0">Tu primer chat con Prometheus AI</a><a href="#s1">Encender el motor local</a><a href="#s2">Descargar un modelo desde Hugging Face</a><a href="#s3">Configurar el modelo desde el panel LlamaCpp</a><a href="#s4">Pedirle a la IA que trabaje en el proyecto</a><a href="#s5">Instalar extensiones</a><a href="#s6">Próximos pasos</a></aside>
+</div>
+<footer><div class="wrap foot-row">
+  <span>🌐 GitHub</span><span>🐦 X</span><span>📺 YouTube</span><span>💬 Reddit</span>
+  <div class="foot-links"><span>Soporte</span><span>Privacidad</span><span>Gestión de cookies</span><span>Términos de uso</span><span>Licencia</span></div>
+</div></footer>
+</body>
+</html>

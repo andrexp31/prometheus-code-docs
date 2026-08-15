@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prometheus Code — Libera tu código</title>
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<nav class="nav"><div class="wrap nav-inner">
+  <div class="logo"><div class="logo-badge">▲</div> Prometheus Code</div>
+  <div class="nav-links">
+    <a href="/#features">Funciones ▾</a>
+    <a href="/docs/empezar/instalacion" class="">Docs</a>
+    <a href="/#descargas">Descargas</a>
+    <span>Blog</span><span>FAQ</span><span>Recursos ▾</span>
+  </div>
+  <div class="nav-right">
+    <a class="lang-toggle" href="/en/">EN</a>
+    <a class="btn-download" href="/#descargas">Descargar</a>
+  </div>
+</div></nav>
+<div class="banner"><span class="x">✕</span><b>Nuevo:</b> 423 agentes especializados + modelos locales llama.cpp integrados — sin nube, sin suscripción</div>
+<div class="home">
+  
+  <main><header class="hero">
+  <div class="hero-grid"></div>
+  <div class="wrap" style="position:relative;">
+    <h1>
+      <span class="brand">Prometheus Code</span>
+      <span class="tag">Libera tu código.</span>
+    </h1>
+    <p class="sub">Un fork de VS Code con <b>agentes que trabajan por vos</b> — modelos locales, terminal embebida y memoria persistente.</p>
+    <div class="hero-btns">
+      <a class="btn primary" href="#descargas">Descargar para Linux (.deb)</a>
+      <a class="btn outline" href="#descargas">Descargar</a>
+    </div>
+    <p class="hero-meta">Web · Insiders · Otras plataformas · Al usar Prometheus Code aceptás su <a href="#">licencia</a> y <a href="#">política de privacidad</a></p>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Agentes que construyen por vos</h2>
+      <p>Prometheus AI selecciona automáticamente entre 423 agentes especializados para planificar, modificar código, ejecutar comandos e iterar hasta terminar la tarea.</p>
+    </div>
+    <div class="pair">
+      <div class="codewin">
+        <div class="winbar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div><span>prometheus — chat</span></div>
+        <pre><span class="c-cm"># La IA elige sola al especialista</span>
+<span class="c-kw">search_agents</span>(<span class="c-str">"python testing"</span>)
+<span class="c-cm">→ 1. python-tester [Desarrollo] (catálogo)</span>
+<span class="c-kw">use_agent</span>(<span class="c-str">"python-tester"</span>)
+<span class="c-cm">→ Adoptando rol: python-tester…</span>
+$ <span class="c-fn">pytest</span> tests/ <span class="c-num">--maxfail=1</span>
+<span class="c-str">✓ 184 tests passed</span> <span class="c-cm">(exit code: 0)</span></pre>
+      </div>
+      <div>
+        <h3>El agente correcto, en el momento correcto</h3>
+        <p>Sin selección manual: el modelo local busca entre cientos de especialistas y adopta su rol en la misma conversación.</p>
+        <ul>
+          <li>Búsqueda por keywords con scoring (nombre, descripción, categoría)</li>
+          <li>423 agentes del catálogo + tus archivos instalados</li>
+          <li>Herramientas de agentes siempre disponibles para la IA</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Cualquier modelo, todo local</h2>
+      <p>Llama.cpp integrado: buscá modelos en Hugging Face y corré Gemma, Qwen o Llama en tu propia GPU, sin enviar nada a la nube.</p>
+    </div>
+    <div class="tiles">
+      <div class="tile"><div class="icon">🖥️</div><h4>Modelos locales</h4><p>Servidor llama.cpp integrado con contexto ampliable y KV cuantizado.</p></div>
+      <div class="tile"><div class="icon">📦</div><h4>Descarga desde HF</h4><p>Buscador de modelos Hugging Face con detección de cuantización.</p></div>
+      <div class="tile"><div class="icon">💬</div><h4>Chat en español</h4><p>Razonamiento y respuestas en tu idioma, con contexto persistente.</p></div>
+      <div class="tile"><div class="icon">🧠</div><h4>Memoria persistente</h4><p>Recuerda conversaciones entre sesiones.</p></div>
+      <div class="tile"><div class="icon">🖥</div><h4>Terminal IA embebida</h4><p>Los comandos viven en el chat con salida en vivo y exit codes.</p></div>
+      <div class="tile"><div class="icon">📜</div><h4>Historial y sesiones</h4><p>Continuá o reiniciá conversaciones anteriores.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="descargas">
+  <div class="wrap">
+    <div class="cta">
+      <h3>Empezá a construir con IA gratis</h3>
+      <p>Sin tarjeta, sin nube, sin suscripción — solo tu GPU y 423 agentes.</p>
+      <a class="btn" href="#descargas">Descargar Prometheus Code</a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Un editor de clase mundial en su núcleo</h2>
+      <p>Todo el poder de VS Code conservado: edición, debugging, Git y extensiones.</p>
+    </div>
+    <div class="pair rev">
+      <div class="codewin">
+        <div class="winbar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div><span>main.py</span></div>
+        <pre><span class="c-kw">import</span> numpy <span class="c-kw">as</span> np
+<span class="c-kw">def</span> <span class="c-fn">describe</span>(species):
+    subset = iris[iris[<span class="c-str">"species"</span>] == species]
+    <span class="c-kw">return</span> subset[[<span class="c-str">"petal"</span>, <span class="c-str">"sepal"</span>]].agg([<span class="c-str">"mean"</span>, <span class="c-str">"std"</span>])</pre>
+      </div>
+      <div>
+        <h3>Edición inteligente, debugging y más</h3>
+        <p>Completado, resaltado de sintaxis, control de versiones integrado y Live Preview para tus proyectos web.</p>
+      </div>
+    </div>
+    <div style="height:28px"></div>
+    <div class="chips">
+      <span class="chip"><span class="sq blue"></span>JavaScript</span>
+      <span class="chip"><span class="sq red"></span>Python</span>
+      <span class="chip"><span class="sq yellow"></span>TypeScript</span>
+      <span class="chip"><span class="sq green"></span>C#</span>
+      <span class="chip"><span class="sq purple"></span>Java</span>
+      <span class="chip"><span class="sq cyan"></span>HTML</span>
+      <span class="chip"><span class="sq orange"></span>JSON</span>
+      <span class="chip"><span class="sq pink"></span>Markdown</span>
+    </div>
+  </div>
+</section>
+
+<section id="features">
+  <div class="wrap">
+    <div class="sec-head"><h2>Funcionalidades que conservamos y mejoramos</h2></div>
+    <div class="fgrid">
+      <div class="fcard"><div class="ficon">⌨</div><h5>Terminal integrada</h5><p>fish, zsh, bash dentro del editor</p></div>
+      <div class="fcard"><div class="ficon">⚡</div><h5>Run & Debug</h5><p>Sin salir del editor</p></div>
+      <div class="fcard"><div class="ficon">🌿</div><h5>Git integrado</h5><p>Control de versiones nativo</p></div>
+      <div class="fcard"><div class="ficon">🧩</div><h5>Extensiones</h5><p>Open VSX, libre y abierto</p></div>
+      <div class="fcard"><div class="ficon">🎨</div><h5>Temas</h5><p>Tu editor, tu estilo</p></div>
+      <div class="fcard"><div class="ficon">▶</div><h5>Live Preview</h5><p>Vite embebido para tu web</p></div>
+      <div class="fcard"><div class="ficon">🔑</div><h5>Accesibilidad</h5><p>Alto contraste y teclado</p></div>
+      <div class="fcard"><div class="ficon">🌐</div><h5>Web</h5><p>Multiplataforma</p></div>
+    </div>
+  </div>
+</section></main>
+  
+</div>
+<footer><div class="wrap foot-row">
+  <span>🌐 GitHub</span><span>🐦 X</span><span>📺 YouTube</span><span>💬 Reddit</span>
+  <div class="foot-links"><span>Soporte</span><span>Privacidad</span><span>Gestión de cookies</span><span>Términos de uso</span><span>Licencia</span></div>
+</div></footer>
+</body>
+</html>

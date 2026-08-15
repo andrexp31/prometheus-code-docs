@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FAQ</title>
+<link rel="stylesheet" href="/en/assets/site.css">
+</head>
+<body>
+<nav class="nav"><div class="wrap nav-inner">
+  <div class="logo"><div class="logo-badge">▲</div> Prometheus Code</div>
+  <div class="nav-links">
+    <a href="/en/#features">Features ▾</a>
+    <a href="/en/docs/empezar/instalacion" class="active">Docs</a>
+    <a href="/en/#descargas">Downloads</a>
+    <span>Blog</span><span>FAQ</span><span>Resources ▾</span>
+  </div>
+  <div class="nav-right">
+    <a class="lang-toggle" href="/docs/empezar/faq">ES</a>
+    <a class="btn-download" href="/en/#descargas">Download</a>
+  </div>
+</div></nav>
+<div class="banner"><span class="x">✕</span><b>New:</b> 423 specialized agents + integrated local llama.cpp models — no cloud, no subscription</div>
+<div class="wrap layout">
+  <aside class="sidebar"><div class="side-cat"><div class="cat">Getting Started</div><a href="/en/docs/empezar/instalacion">Download & Install</a><a href="/en/docs/empezar/primeros-pasos">First Steps</a><a href="/en/docs/empezar/faq" class="active">FAQ</a></div><div class="side-cat"><div class="cat">Local Models</div><a href="/en/docs/modelos/configuracion">Configuration</a><a href="/en/docs/modelos/busqueda-hf">Hugging Face Search</a><a href="/en/docs/modelos/contexto">Context & Memory</a><a href="/en/docs/modelos/gpu">GPU Requirements</a></div><div class="side-cat"><div class="cat">Prometheus AI</div><a href="/en/docs/prometheus-ai/agentes">Automatic Agents (423)</a><a href="/en/docs/prometheus-ai/terminal">Embedded AI Terminal</a><a href="/en/docs/prometheus-ai/memoria">Persistent Memory</a><a href="/en/docs/prometheus-ai/historial">History & Sessions</a></div><div class="side-cat"><div class="cat">Preserved Features</div><a href="/en/docs/conservadas/terminal">Integrated Terminal</a><a href="/en/docs/conservadas/git">Git & Version Control</a><a href="/en/docs/conservadas/debugging">Debugging</a><a href="/en/docs/conservadas/extensiones">Extensions (Open VSX)</a><a href="/en/docs/conservadas/live-preview">Live Preview</a><a href="/en/docs/conservadas/temas">Themes</a></div></aside>
+  <main><div class="crumb">Home › Docs › Getting Started › FAQ</div><h1>FAQ</h1>
+<h2 id="s0">Is it free?</h2>
+<p>Yes. Prometheus Code is MIT: the editor is free, with no subscriptions, no
+accounts and no locked features. Local models are open source (GGUF) and the
+ecosystem extensions install from Open VSX.</p>
+<blockquote>
+<p><strong>There is no paid tier:</strong> nothing in the editor depends on a paid plan.
+The only optional upgrade is a better GPU, which just speeds up responses.</p>
+</blockquote>
+<h2 id="s1">Do I need a GPU?</h2>
+<p>No. Prometheus Code works with any processor, and local models run on CPU if
+you don&#39;t have a GPU. With an NVIDIA GPU, llama-server is compiled with CUDA
+support and responses are much faster (layers are offloaded to VRAM from the
+LlamaCpp panel).</p>
+<h2 id="s2">Can I use the models I already have in Ollama?</h2>
+<p>Yes. Prometheus Code uses the same <code>llama-server</code> as Ollama, on the same port
+(11434). The GGUF models you already downloaded can be pointed to from the
+LlamaCpp panel and work without changes. Models can also be downloaded
+directly from the built-in Hugging Face catalog.</p>
+<h2 id="s3">Is it a fork of VS Code?</h2>
+<p>Yes, it is a fork of VS Code (Code - OSS). It keeps everything you already
+know: editing, debugging, built-in Git, terminal and extensions. On top of
+that it adds its own identity: local models, the Prometheus AI chat and
+automatic agents that work on your project.</p>
+<h2 id="s4">Which extensions can I install?</h2>
+<p>Prometheus Code uses <strong>Open VSX</strong>, the open extension marketplace of VS Code.
+The editor also ships the <strong>Prometheus Code Extension Pack</strong>, which installs
+the <strong>Prometheus AI</strong> extension and the rest of the editor&#39;s ecosystem.</p>
+<h2 id="s5">Is my data sent to the cloud?</h2>
+<p>No. Prometheus Code has no telemetry and models run locally on your machine:
+your files, chats and settings never leave your computer. You only need a
+connection to download a model from Hugging Face, and after that you can work
+offline.</p>
+<h2 id="s6">Which operating systems does it support?</h2>
+<p>Prometheus Code ships for Linux (<code>.deb</code>, <code>.tar.gz</code> and <code>.AppImage</code>). If you
+work from source, it compiles on Linux, Windows and macOS.</p>
+<div class="feedback-box"><span>Was this page helpful?</span><span class="fb-btn">👍</span><span class="fb-btn">👎</span><span style="margin-left:auto;color:#8b949e">FAQ</span></div><div class="prevnext"><span></span><a href="/en/docs/empezar/instalacion">empezar/instalacion →</a></div></main>
+  <aside class="toc"><div class="t">On this page</div><a href="#s0">Is it free?</a><a href="#s1">Do I need a GPU?</a><a href="#s2">Can I use the models I already have in Ollama?</a><a href="#s3">Is it a fork of VS Code?</a><a href="#s4">Which extensions can I install?</a><a href="#s5">Is my data sent to the cloud?</a><a href="#s6">Which operating systems does it support?</a></aside>
+</div>
+<footer><div class="wrap foot-row">
+  <span>🌐 GitHub</span><span>🐦 X</span><span>📺 YouTube</span><span>💬 Reddit</span>
+  <div class="foot-links"><span>Support</span><span>Privacy</span><span>Manage cookies</span><span>Terms of use</span><span>License</span></div>
+</div></footer>
+</body>
+</html>
