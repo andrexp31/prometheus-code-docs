@@ -64,6 +64,20 @@ for (const lang of LANGS) {
     await writeFile(out, html);
     console.log(`[build] ${fullPath}`);
   }
+  try {
+    const index = await readPage(lang, 'docs/index');
+    const { html: indexHtml } = buildToc(index.md);
+    const indexOut = join(PUBLIC, lang === 'es' ? '' : 'en', 'docs', 'index.html');
+    await writeFile(indexOut, renderShell(lang, {
+      title: index.title,
+      html: indexHtml,
+      breadcrumb: `${lang === 'es' ? 'Inicio' : 'Home'} › Docs`,
+      sidebar: buildSidebar(lang, prefix + '/docs/'),
+      toc: '',
+      activePath: '/docs/',
+    }));
+    console.log(`[build] ${prefix}/docs/`);
+  } catch { /* sin índice */ }
 }
 
 await buildHome();
