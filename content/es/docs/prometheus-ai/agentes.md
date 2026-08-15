@@ -47,7 +47,7 @@ Además del catálogo inyectado, el chat expone `search_agents` para búsquedas
 por palabras clave:
 
 ```text
-search_agents("testing python", "Desarrollo")
+search_agents("testing python", "Development")
 ```
 
 Cada agente recibe un puntaje según dónde aparezcan las palabras:
