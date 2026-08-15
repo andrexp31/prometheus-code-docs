@@ -100,6 +100,13 @@ for (const lang of LANGS) {
       console.log(`[build] ${prefix}/${page}/`);
     } catch { /* sin página */ }
   }
+  if (lang === 'es') {
+    const notes = await readFile(join(CONTENT, 'es', 'release-notes.md'), 'utf8');
+    const body = notes.replace(/^---\n[\s\S]*?\n---\n/, '');
+    await mkdir(join(PUBLIC, 'release-notes'), { recursive: true });
+    await writeFile(join(PUBLIC, 'release-notes', 'v1_1.md'), body);
+    console.log('[build] /release-notes/v1_1.md');
+  }
 }
 
 await mkdir(join(PUBLIC, 'assets'), { recursive: true });
