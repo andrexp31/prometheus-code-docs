@@ -1,0 +1,14 @@
+{
+  "name": "prometheus-code-docs",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "smoke": "node scripts/smoke.mjs",
+    "dev": "wrangler dev --local"
+  },
+  "devDependencies": {
+    "marked": "^15.0.0",
+    "wrangler": "^4.107.0"
+  }
+}
