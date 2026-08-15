@@ -93,6 +93,17 @@ footer { border-top: 1px solid #21262d; padding: 36px 0; }
 
 @media (max-width: 1000px) { .layout { grid-template-columns: 1fr; } .sidebar, .toc { position: static; } }
 
+@media (max-width: 760px) {
+  .nav-links { display: none; }
+  .wrap { padding: 0 16px; }
+  .hero { padding: 48px 0 40px; }
+  section { padding: 40px 0; }
+  .pair { gap: 24px; }
+  .cta { padding: 32px 16px; }
+}
+
+.pair > * { min-width: 0; }
+
 /* home (mockup home-hifi-v6) */
 section { padding: 64px 0; border-top: 1px solid #161b22; }
 .sec-head { text-align: center; max-width: 780px; margin: 0 auto 40px; }
