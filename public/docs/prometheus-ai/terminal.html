@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terminal IA embebida</title>
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<nav class="nav"><div class="wrap nav-inner">
+  <div class="logo"><div class="logo-badge">▲</div> Prometheus Code</div>
+  <div class="nav-links">
+    <a href="/#features">Funciones ▾</a>
+    <a href="/docs/empezar/instalacion" class="active">Docs</a>
+    <a href="/#descargas">Descargas</a>
+    <span>Blog</span><span>FAQ</span><span>Recursos ▾</span>
+  </div>
+  <div class="nav-right">
+    <a class="lang-toggle" href="/en/docs/prometheus-ai/terminal">EN</a>
+    <a class="btn-download" href="/#descargas">Descargar</a>
+  </div>
+</div></nav>
+<div class="banner"><span class="x">✕</span><b>Nuevo:</b> 423 agentes especializados + modelos locales llama.cpp integrados — sin nube, sin suscripción</div>
+<div class="wrap layout">
+  <aside class="sidebar"><div class="side-cat"><div class="cat">Empezar</div><a href="/docs/empezar/instalacion">Descarga e instalación</a><a href="/docs/empezar/primeros-pasos">Primeros pasos</a><a href="/docs/empezar/faq">Preguntas frecuentes</a></div><div class="side-cat"><div class="cat">Modelos locales</div><a href="/docs/modelos/configuracion">Configuración</a><a href="/docs/modelos/busqueda-hf">Búsqueda en Hugging Face</a><a href="/docs/modelos/contexto">Contexto y memoria</a><a href="/docs/modelos/gpu">Requisitos de GPU</a></div><div class="side-cat"><div class="cat">Prometheus AI</div><a href="/docs/prometheus-ai/agentes">Agentes automáticos (423)</a><a href="/docs/prometheus-ai/terminal" class="active">Terminal IA embebida</a><a href="/docs/prometheus-ai/memoria">Memoria persistente</a><a href="/docs/prometheus-ai/historial">Historial y sesiones</a></div><div class="side-cat"><div class="cat">Funciones conservadas</div><a href="/docs/conservadas/terminal">Terminal integrada</a><a href="/docs/conservadas/git">Git y control de versiones</a><a href="/docs/conservadas/debugging">Debugging</a><a href="/docs/conservadas/extensiones">Extensiones (Open VSX)</a><a href="/docs/conservadas/live-preview">Live Preview</a><a href="/docs/conservadas/temas">Temas</a></div></aside>
+  <main><div class="crumb">Inicio › Docs › Prometheus AI › Terminal IA embebida</div><h1>Terminal IA embebida</h1>
+<p>Cuando Prometheus AI necesita ejecutar un comando, corre en una terminal
+propia, oculta dentro del chat. Es una terminal real de fish, embebida como
+un bloque más de la conversación (PrometheusTerminalToolPart) y renderizada
+en vivo con xterm. Tu terminal no se toca: la de la IA vive como un mensaje
+más de la conversación.</p>
+<h2 id="s0">Una terminal oculta para la IA</h2>
+<p>La terminal del modelo no aparece en el panel de terminales del editor: es
+invisible salvo dentro del chat. Cada comando que ejecuta la IA es un bloque
+con su propia línea de prompt, su salida en vivo y su resultado:</p>
+<pre><code class="language-text">$ pytest tests/ --maxfail=1
+✓ 184 tests passed  (exit code: 0)
+</code></pre>
+<h2 id="s1">Salida completa con exit code</h2>
+<p>Cuando el comando termina, el bloque muestra la salida y el código de salida
+al final, como <code>(exit code: 0)</code> o <code>(exit code: 1)</code>. Con eso Prometheus AI
+sabe si el comando funcionó y puede reaccionar en consecuencia — por ejemplo,
+volver a correr los tests después de un fix.</p>
+<h2 id="s2">Contraseñas protegidas</h2>
+<p>Si un comando pide una contraseña (por ejemplo <code>sudo</code>), el chat activa el
+<strong>gating de contraseñas</strong>: la terminal deja de transmitir su contenido hacia
+la IA y la contraseña queda fuera de la conversación. La tipeás vos, y el
+modelo solo ve el resultado del comando.</p>
+<blockquote>
+<p><strong>Nota:</strong> así un comando con secretos nunca deja la contraseña registrada
+en el historial del chat.</p>
+</blockquote>
+<h2 id="s3">Espera de prompt (shell integration)</h2>
+<p>Antes de dar la salida por terminada, la terminal espera a que el comando
+llegue de nuevo al prompt de fish. Eso se detecta con shell integration
+cuando está disponible; si no, se usa un fallback por silencio: si no hay
+salida nueva durante un tiempo, el comando se considera terminado. La salida
+se captura completa, sin cortes por tiempo.</p>
+<h2 id="s4">Límites</h2>
+<table>
+<thead>
+<tr>
+<th>Límite</th>
+<th>Valor</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Tiempo máximo por comando (deadline)</td>
+<td>10 minutos</td>
+</tr>
+<tr>
+<td>Salida mostrada</td>
+<td>truncada a 8000 caracteres</td>
+</tr>
+</tbody></table>
+<p>Pasado el deadline, el comando se interrumpe y la IA lo sabe. La salida se
+trunca a 8000 caracteres para que un comando verboso no inunde el contexto de
+la conversación.</p>
+<blockquote>
+<p><strong>Tip:</strong> si un comando va a tardar mucho, partilo en pasos más chicos o
+pedile a la IA que lo corra en segundo plano con redirección a un archivo.</p>
+</blockquote>
+<h2 id="s5">Qué sigue</h2>
+<ul>
+<li><a href="agentes">Agentes automáticos (423)</a> — los especialistas que usan esta
+terminal.</li>
+<li><a href="memoria">Memoria persistente</a> — lo que Prometheus AI recuerda entre
+sesiones.</li>
+<li><a href="historial">Historial y sesiones</a> — conversaciones anteriores.</li>
+</ul>
+<div class="feedback-box"><span>¿Te resultó útil esta página?</span><span class="fb-btn">👍</span><span class="fb-btn">👎</span><span style="margin-left:auto;color:#8b949e">Terminal IA embebida</span></div><div class="prevnext"><a href="/docs/prometheus-ai/memoria">← prometheus-ai/memoria</a><span></span></div></main>
+  <aside class="toc"><div class="t">En esta página</div><a href="#s0">Una terminal oculta para la IA</a><a href="#s1">Salida completa con exit code</a><a href="#s2">Contraseñas protegidas</a><a href="#s3">Espera de prompt (shell integration)</a><a href="#s4">Límites</a><a href="#s5">Qué sigue</a></aside>
+</div>
+<footer><div class="wrap foot-row">
+  <span>🌐 GitHub</span><span>🐦 X</span><span>📺 YouTube</span><span>💬 Reddit</span>
+  <div class="foot-links"><span>Soporte</span><span>Privacidad</span><span>Gestión de cookies</span><span>Términos de uso</span><span>Licencia</span></div>
+</div></footer>
+</body>
+</html>

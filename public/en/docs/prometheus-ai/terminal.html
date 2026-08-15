@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Embedded AI Terminal</title>
+<link rel="stylesheet" href="/en/assets/site.css">
+</head>
+<body>
+<nav class="nav"><div class="wrap nav-inner">
+  <div class="logo"><div class="logo-badge">▲</div> Prometheus Code</div>
+  <div class="nav-links">
+    <a href="/en/#features">Features ▾</a>
+    <a href="/en/docs/empezar/instalacion" class="active">Docs</a>
+    <a href="/en/#descargas">Downloads</a>
+    <span>Blog</span><span>FAQ</span><span>Resources ▾</span>
+  </div>
+  <div class="nav-right">
+    <a class="lang-toggle" href="/docs/prometheus-ai/terminal">ES</a>
+    <a class="btn-download" href="/en/#descargas">Download</a>
+  </div>
+</div></nav>
+<div class="banner"><span class="x">✕</span><b>New:</b> 423 specialized agents + integrated local llama.cpp models — no cloud, no subscription</div>
+<div class="wrap layout">
+  <aside class="sidebar"><div class="side-cat"><div class="cat">Getting Started</div><a href="/en/docs/empezar/instalacion">Download & Install</a><a href="/en/docs/empezar/primeros-pasos">First Steps</a><a href="/en/docs/empezar/faq">FAQ</a></div><div class="side-cat"><div class="cat">Local Models</div><a href="/en/docs/modelos/configuracion">Configuration</a><a href="/en/docs/modelos/busqueda-hf">Hugging Face Search</a><a href="/en/docs/modelos/contexto">Context & Memory</a><a href="/en/docs/modelos/gpu">GPU Requirements</a></div><div class="side-cat"><div class="cat">Prometheus AI</div><a href="/en/docs/prometheus-ai/agentes">Automatic Agents (423)</a><a href="/en/docs/prometheus-ai/terminal" class="active">Embedded AI Terminal</a><a href="/en/docs/prometheus-ai/memoria">Persistent Memory</a><a href="/en/docs/prometheus-ai/historial">History & Sessions</a></div><div class="side-cat"><div class="cat">Preserved Features</div><a href="/en/docs/conservadas/terminal">Integrated Terminal</a><a href="/en/docs/conservadas/git">Git & Version Control</a><a href="/en/docs/conservadas/debugging">Debugging</a><a href="/en/docs/conservadas/extensiones">Extensions (Open VSX)</a><a href="/en/docs/conservadas/live-preview">Live Preview</a><a href="/en/docs/conservadas/temas">Themes</a></div></aside>
+  <main><div class="crumb">Home › Docs › Prometheus AI › Embedded AI Terminal</div><h1>Embedded AI Terminal</h1>
+<p>When Prometheus AI needs to run a command, it runs in its own terminal,
+hidden inside the chat. It is a real fish terminal, embedded as one more
+block of the conversation (PrometheusTerminalToolPart) and rendered live with
+xterm. Your terminal is untouched: the AI&#39;s lives as one more message in the
+conversation.</p>
+<h2 id="s0">A hidden terminal for the AI</h2>
+<p>The model&#39;s terminal does not show up in the editor&#39;s terminal panel: it is
+invisible except inside the chat. Every command the AI runs is a block with
+its own prompt line, live output and result:</p>
+<pre><code class="language-text">$ pytest tests/ --maxfail=1
+✓ 184 tests passed  (exit code: 0)
+</code></pre>
+<h2 id="s1">Full output with exit code</h2>
+<p>When the command finishes, the block shows the output and the exit code at
+the end, like <code>(exit code: 0)</code> or <code>(exit code: 1)</code>. That is how Prometheus AI
+knows whether the command worked and can react accordingly — for example,
+running the tests again after a fix.</p>
+<h2 id="s2">Protected passwords</h2>
+<p>If a command asks for a password (for example <code>sudo</code>), the chat activates
+<strong>password gating</strong>: the terminal stops streaming its content to the AI and
+the password stays out of the conversation. You type it, and the model only
+sees the command&#39;s result.</p>
+<blockquote>
+<p><strong>Note:</strong> this way a command with secrets never leaves the password
+recorded in the chat history.</p>
+</blockquote>
+<h2 id="s3">Prompt wait (shell integration)</h2>
+<p>Before marking the output as complete, the terminal waits for the command to
+reach the fish prompt again. That is detected with shell integration when
+available; otherwise a silence fallback is used: if no new output appears for
+a while, the command is considered finished. The output is captured in full,
+with no time cuts.</p>
+<h2 id="s4">Limits</h2>
+<table>
+<thead>
+<tr>
+<th>Limit</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Max time per command (deadline)</td>
+<td>10 minutes</td>
+</tr>
+<tr>
+<td>Shown output</td>
+<td>truncated at 8000 characters</td>
+</tr>
+</tbody></table>
+<p>Past the deadline, the command is interrupted and the AI knows it. Output is
+truncated at 8000 characters so a verbose command does not flood the
+conversation context.</p>
+<blockquote>
+<p><strong>Tip:</strong> if a command will take long, split it into smaller steps or ask
+the AI to run it in the background with redirection to a file.</p>
+</blockquote>
+<h2 id="s5">What&#39;s next</h2>
+<ul>
+<li><a href="agentes">Automatic Agents (423)</a> — the specialists that use this
+terminal.</li>
+<li><a href="memoria">Persistent Memory</a> — what Prometheus AI remembers between
+sessions.</li>
+<li><a href="historial">History &amp; Sessions</a> — previous conversations.</li>
+</ul>
+<div class="feedback-box"><span>Was this page helpful?</span><span class="fb-btn">👍</span><span class="fb-btn">👎</span><span style="margin-left:auto;color:#8b949e">Embedded AI Terminal</span></div><div class="prevnext"><a href="/en/docs/prometheus-ai/memoria">← prometheus-ai/memoria</a><span></span></div></main>
+  <aside class="toc"><div class="t">On this page</div><a href="#s0">A hidden terminal for the AI</a><a href="#s1">Full output with exit code</a><a href="#s2">Protected passwords</a><a href="#s3">Prompt wait (shell integration)</a><a href="#s4">Limits</a><a href="#s5">What&#39;s next</a></aside>
+</div>
+<footer><div class="wrap foot-row">
+  <span>🌐 GitHub</span><span>🐦 X</span><span>📺 YouTube</span><span>💬 Reddit</span>
+  <div class="foot-links"><span>Support</span><span>Privacy</span><span>Manage cookies</span><span>Terms of use</span><span>License</span></div>
+</div></footer>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agentes automáticos (423)</title>
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<nav class="nav"><div class="wrap nav-inner">
+  <div class="logo"><div class="logo-badge">▲</div> Prometheus Code</div>
+  <div class="nav-links">
+    <a href="/#features">Funciones ▾</a>
+    <a href="/docs/empezar/instalacion" class="active">Docs</a>
+    <a href="/#descargas">Descargas</a>
+    <span>Blog</span><span>FAQ</span><span>Recursos ▾</span>
+  </div>
+  <div class="nav-right">
+    <a class="lang-toggle" href="/en/docs/prometheus-ai/agentes">EN</a>
+    <a class="btn-download" href="/#descargas">Descargar</a>
+  </div>
+</div></nav>
+<div class="banner"><span class="x">✕</span><b>Nuevo:</b> 423 agentes especializados + modelos locales llama.cpp integrados — sin nube, sin suscripción</div>
+<div class="wrap layout">
+  <aside class="sidebar"><div class="side-cat"><div class="cat">Empezar</div><a href="/docs/empezar/instalacion">Descarga e instalación</a><a href="/docs/empezar/primeros-pasos">Primeros pasos</a><a href="/docs/empezar/faq">Preguntas frecuentes</a></div><div class="side-cat"><div class="cat">Modelos locales</div><a href="/docs/modelos/configuracion">Configuración</a><a href="/docs/modelos/busqueda-hf">Búsqueda en Hugging Face</a><a href="/docs/modelos/contexto">Contexto y memoria</a><a href="/docs/modelos/gpu">Requisitos de GPU</a></div><div class="side-cat"><div class="cat">Prometheus AI</div><a href="/docs/prometheus-ai/agentes" class="active">Agentes automáticos (423)</a><a href="/docs/prometheus-ai/terminal">Terminal IA embebida</a><a href="/docs/prometheus-ai/memoria">Memoria persistente</a><a href="/docs/prometheus-ai/historial">Historial y sesiones</a></div><div class="side-cat"><div class="cat">Funciones conservadas</div><a href="/docs/conservadas/terminal">Terminal integrada</a><a href="/docs/conservadas/git">Git y control de versiones</a><a href="/docs/conservadas/debugging">Debugging</a><a href="/docs/conservadas/extensiones">Extensiones (Open VSX)</a><a href="/docs/conservadas/live-preview">Live Preview</a><a href="/docs/conservadas/temas">Temas</a></div></aside>
+  <main><div class="crumb">Inicio › Docs › Prometheus AI › Agentes automáticos (423)</div><h1>Agentes automáticos (423)</h1>
+<p>Los agentes son especialistas con instrucciones propias: un agente de testing
+sabe generar y correr tests de pytest, un agente de Rust conoce las
+convenciones de cargo, y así hasta 423 perfiles. Prometheus AI los busca, los
+adopta y trabaja con ellos dentro del chat, sin que tengas que configurar
+nada.</p>
+<h2 id="s0">De dónde salen los 423 agentes</h2>
+<p>El catálogo combina dos fuentes:</p>
+<table>
+<thead>
+<tr>
+<th>Fuente</th>
+<th>Qué aporta</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>AI Templates de GitHub</td>
+<td>los agentes del catálogo abierto de plantillas de IA</td>
+</tr>
+<tr>
+<td>Instalados en tu sistema</td>
+<td>los que tenés en <code>~/.claude/agents</code> (globales) y en <code>.claude/agents</code> del workspace (por proyecto)</td>
+</tr>
+</tbody></table>
+<p>Algunos vienen con el editor y otros los instalaste vos o tu equipo; todos
+aparecen en el mismo catálogo y Prometheus AI los trata igual.</p>
+<h2 id="s1">El catálogo siempre a mano</h2>
+<p>Desde agosto de 2026, el catálogo completo —nombres, categorías y
+descripciones— se inyecta en el contexto del chat. Prometheus AI conoce todos
+los agentes desde el primer mensaje, sin necesidad de buscarlos primero.</p>
+<p>Para no gastar contexto de más, la inyección tiene un presupuesto de tokens
+con degradación:</p>
+<table>
+<thead>
+<tr>
+<th>Si el catálogo…</th>
+<th>Se inyecta…</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>cabe en el presupuesto</td>
+<td>catálogo completo (nombre, categoría y descripción de cada agente)</td>
+</tr>
+<tr>
+<td>excede el presupuesto</td>
+<td>solo los nombres</td>
+</tr>
+<tr>
+<td>todavía excede</td>
+<td>los 20 agentes por categoría más relevantes</td>
+</tr>
+</tbody></table>
+<p>En la práctica casi siempre entra el catálogo completo; la degradación solo
+aparece con modelos de ventana de contexto muy chica.</p>
+<h2 id="s2">Buscar agentes</h2>
+<p>Además del catálogo inyectado, el chat expone <code>search_agents</code> para búsquedas
+por palabras clave:</p>
+<pre><code class="language-text">search_agents(&quot;testing python&quot;, &quot;Desarrollo&quot;)
+</code></pre>
+<p>Cada agente recibe un puntaje según dónde aparezcan las palabras:</p>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Peso</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Nombre</td>
+<td>×3</td>
+</tr>
+<tr>
+<td>Descripción</td>
+<td>×2</td>
+</tr>
+<tr>
+<td>Categoría</td>
+<td>×1</td>
+</tr>
+</tbody></table>
+<p>Los resultados se ordenan por puntaje y se devuelven los <strong>10 mejores</strong>.
+También está <code>list_agents(category)</code>, que lista hasta 50 agentes de una
+categoría — útil para recorrer un área entera.</p>
+<blockquote>
+<p><strong>Tip:</strong> buscá por lo que el agente hace, no por su nombre: &quot;rest api&quot; o
+&quot;django&quot; encuentran más que recordar nombres exactos.</p>
+</blockquote>
+<h2 id="s3">Adoptar un agente</h2>
+<p>Cuando Prometheus AI elige un agente, ejecuta <code>use_agent</code> con su nombre y la
+conversación continúa en ese rol: las instrucciones del agente se inyectan en
+el contexto del modelo y de ahí en más responde como el especialista
+correspondiente.</p>
+<pre><code class="language-text">use_agent(&quot;python-tester&quot;)
+→ Adoptando rol: python-tester…
+</code></pre>
+<blockquote>
+<p><strong>Nota:</strong> adoptar un agente no cambia nada de tu entorno: no se instala
+nada y no toca tu configuración. Solo es contexto que el modelo pasa a
+tener en cuenta.</p>
+</blockquote>
+<h2 id="s4">Autonomía en el chat</h2>
+<p>Las herramientas de agentes (<code>search_agents</code>, <code>list_agents</code>, <code>use_agent</code>)
+están <strong>siempre disponibles</strong> en el chat: no dependen de ninguna selección
+manual. El system prompt de autonomía (en el idioma del editor, español o
+inglés) le indica al modelo que puede buscar y adoptar agentes por su cuenta
+cuando la tarea lo amerite — vos pedís el resultado, no la herramienta.</p>
+<h2 id="s5">En el chat</h2>
+<p>Así se ve una conversación real donde Prometheus AI busca y adopta un agente
+por su cuenta:</p>
+<p><img src="/assets/agentes-chat-1.png" alt="Prometheus AI buscando y adoptando un agente en el chat"></p>
+<p>Y otro ejemplo de la misma conversación, con la búsqueda y el agente ya
+adoptado:</p>
+<p><img src="/assets/agentes-chat-2.png" alt="Búsqueda y adopción de agente en el chat"></p>
+<h2 id="s6">Qué sigue</h2>
+<ul>
+<li><a href="terminal">Terminal IA embebida</a> — la terminal oculta donde corren los
+comandos.</li>
+<li><a href="memoria">Memoria persistente</a> — lo que Prometheus AI recuerda entre
+sesiones.</li>
+<li><a href="historial">Historial y sesiones</a> — conversaciones anteriores.</li>
+</ul>
+<div class="feedback-box"><span>¿Te resultó útil esta página?</span><span class="fb-btn">👍</span><span class="fb-btn">👎</span><span style="margin-left:auto;color:#8b949e">Agentes automáticos (423)</span></div><div class="prevnext"><a href="/docs/modelos/gpu">← modelos/gpu</a><a href="/docs/prometheus-ai/historial">prometheus-ai/historial →</a></div></main>
+  <aside class="toc"><div class="t">En esta página</div><a href="#s0">De dónde salen los 423 agentes</a><a href="#s1">El catálogo siempre a mano</a><a href="#s2">Buscar agentes</a><a href="#s3">Adoptar un agente</a><a href="#s4">Autonomía en el chat</a><a href="#s5">En el chat</a><a href="#s6">Qué sigue</a></aside>
+</div>
+<footer><div class="wrap foot-row">
+  <span>🌐 GitHub</span><span>🐦 X</span><span>📺 YouTube</span><span>💬 Reddit</span>
+  <div class="foot-links"><span>Soporte</span><span>Privacidad</span><span>Gestión de cookies</span><span>Términos de uso</span><span>Licencia</span></div>
+</div></footer>
+</body>
+</html>

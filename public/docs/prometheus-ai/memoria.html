@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Memoria persistente</title>
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<nav class="nav"><div class="wrap nav-inner">
+  <div class="logo"><div class="logo-badge">▲</div> Prometheus Code</div>
+  <div class="nav-links">
+    <a href="/#features">Funciones ▾</a>
+    <a href="/docs/empezar/instalacion" class="active">Docs</a>
+    <a href="/#descargas">Descargas</a>
+    <span>Blog</span><span>FAQ</span><span>Recursos ▾</span>
+  </div>
+  <div class="nav-right">
+    <a class="lang-toggle" href="/en/docs/prometheus-ai/memoria">EN</a>
+    <a class="btn-download" href="/#descargas">Descargar</a>
+  </div>
+</div></nav>
+<div class="banner"><span class="x">✕</span><b>Nuevo:</b> 423 agentes especializados + modelos locales llama.cpp integrados — sin nube, sin suscripción</div>
+<div class="wrap layout">
+  <aside class="sidebar"><div class="side-cat"><div class="cat">Empezar</div><a href="/docs/empezar/instalacion">Descarga e instalación</a><a href="/docs/empezar/primeros-pasos">Primeros pasos</a><a href="/docs/empezar/faq">Preguntas frecuentes</a></div><div class="side-cat"><div class="cat">Modelos locales</div><a href="/docs/modelos/configuracion">Configuración</a><a href="/docs/modelos/busqueda-hf">Búsqueda en Hugging Face</a><a href="/docs/modelos/contexto">Contexto y memoria</a><a href="/docs/modelos/gpu">Requisitos de GPU</a></div><div class="side-cat"><div class="cat">Prometheus AI</div><a href="/docs/prometheus-ai/agentes">Agentes automáticos (423)</a><a href="/docs/prometheus-ai/terminal">Terminal IA embebida</a><a href="/docs/prometheus-ai/memoria" class="active">Memoria persistente</a><a href="/docs/prometheus-ai/historial">Historial y sesiones</a></div><div class="side-cat"><div class="cat">Funciones conservadas</div><a href="/docs/conservadas/terminal">Terminal integrada</a><a href="/docs/conservadas/git">Git y control de versiones</a><a href="/docs/conservadas/debugging">Debugging</a><a href="/docs/conservadas/extensiones">Extensiones (Open VSX)</a><a href="/docs/conservadas/live-preview">Live Preview</a><a href="/docs/conservadas/temas">Temas</a></div></aside>
+  <main><div class="crumb">Inicio › Docs › Prometheus AI › Memoria persistente</div><h1>Memoria persistente</h1>
+<p>Prometheus AI recuerda entre sesiones. Lo que se consolida en un chat queda
+guardado en el storage del editor, y el modelo lo recupera cuando volvés a
+abrir el editor — aunque cierres la ventana y la reabras al día siguiente.</p>
+<h2 id="s0">Memoria entre sesiones</h2>
+<p>La memoria vive en el storage local del editor, bajo la clave
+<code>prometheus.ai.chat.memory.v1</code>. El modelo escribe entradas cuando detecta
+datos estables en la conversación: tu nombre, el idioma que preferís, el
+stack del proyecto en el que trabajás, decisiones que se tomaron. En la
+sesión siguiente, esa información ya está disponible desde el primer mensaje,
+sin que tengas que repetirla.</p>
+<blockquote>
+<p><strong>Nota:</strong> no es un registro de lo que hablaste: es una memoria resumida, de
+datos que valen a futuro.</p>
+</blockquote>
+<h2 id="s1">Cómo se guarda</h2>
+<table>
+<thead>
+<tr>
+<th>Dato</th>
+<th>Valor</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Almacenamiento</td>
+<td>storage local del editor</td>
+</tr>
+<tr>
+<td>Clave</td>
+<td><code>prometheus.ai.chat.memory.v1</code></td>
+</tr>
+<tr>
+<td>Entradas</td>
+<td>máximo 20</td>
+</tr>
+</tbody></table>
+<p>Todo queda en tu máquina: la memoria no se envía a ningún servidor. Cuando se
+llega a las 20 entradas, las más viejas se descartan para hacer lugar a las
+nuevas.</p>
+<h2 id="s2">Resúmenes compactos para modelos locales</h2>
+<p>Los modelos locales tienen una ventana de contexto limitada: cargar la
+memoria entera de golpe gastaría KV cache de más. Por eso, para modelos
+locales la memoria se entrega como <strong>resúmenes compactos</strong>: el contenido
+esencial de cada entrada, condensado en pocas líneas, listo para entrar en el
+contexto sin ocupar de más. El modelo sigue teniendo los datos que importan,
+a una fracción del costo. Lo detallamos en <a href="../modelos/contexto">Contexto y memoria</a>.</p>
+<h2 id="s3">Qué sigue</h2>
+<ul>
+<li><a href="agentes">Agentes automáticos (423)</a> — los especialistas del chat.</li>
+<li><a href="terminal">Terminal IA embebida</a> — la terminal oculta donde corren los
+comandos.</li>
+<li><a href="historial">Historial y sesiones</a> — conversaciones anteriores.</li>
+</ul>
+<div class="feedback-box"><span>¿Te resultó útil esta página?</span><span class="fb-btn">👍</span><span class="fb-btn">👎</span><span style="margin-left:auto;color:#8b949e">Memoria persistente</span></div><div class="prevnext"><a href="/docs/prometheus-ai/historial">← prometheus-ai/historial</a><a href="/docs/prometheus-ai/terminal">prometheus-ai/terminal →</a></div></main>
+  <aside class="toc"><div class="t">En esta página</div><a href="#s0">Memoria entre sesiones</a><a href="#s1">Cómo se guarda</a><a href="#s2">Resúmenes compactos para modelos locales</a><a href="#s3">Qué sigue</a></aside>
+</div>
+<footer><div class="wrap foot-row">
+  <span>🌐 GitHub</span><span>🐦 X</span><span>📺 YouTube</span><span>💬 Reddit</span>
+  <div class="foot-links"><span>Soporte</span><span>Privacidad</span><span>Gestión de cookies</span><span>Términos de uso</span><span>Licencia</span></div>
+</div></footer>
+</body>
+</html>

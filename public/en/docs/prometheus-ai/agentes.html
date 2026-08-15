@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Automatic Agents (423)</title>
+<link rel="stylesheet" href="/en/assets/site.css">
+</head>
+<body>
+<nav class="nav"><div class="wrap nav-inner">
+  <div class="logo"><div class="logo-badge">▲</div> Prometheus Code</div>
+  <div class="nav-links">
+    <a href="/en/#features">Features ▾</a>
+    <a href="/en/docs/empezar/instalacion" class="active">Docs</a>
+    <a href="/en/#descargas">Downloads</a>
+    <span>Blog</span><span>FAQ</span><span>Resources ▾</span>
+  </div>
+  <div class="nav-right">
+    <a class="lang-toggle" href="/docs/prometheus-ai/agentes">ES</a>
+    <a class="btn-download" href="/en/#descargas">Download</a>
+  </div>
+</div></nav>
+<div class="banner"><span class="x">✕</span><b>New:</b> 423 specialized agents + integrated local llama.cpp models — no cloud, no subscription</div>
+<div class="wrap layout">
+  <aside class="sidebar"><div class="side-cat"><div class="cat">Getting Started</div><a href="/en/docs/empezar/instalacion">Download & Install</a><a href="/en/docs/empezar/primeros-pasos">First Steps</a><a href="/en/docs/empezar/faq">FAQ</a></div><div class="side-cat"><div class="cat">Local Models</div><a href="/en/docs/modelos/configuracion">Configuration</a><a href="/en/docs/modelos/busqueda-hf">Hugging Face Search</a><a href="/en/docs/modelos/contexto">Context & Memory</a><a href="/en/docs/modelos/gpu">GPU Requirements</a></div><div class="side-cat"><div class="cat">Prometheus AI</div><a href="/en/docs/prometheus-ai/agentes" class="active">Automatic Agents (423)</a><a href="/en/docs/prometheus-ai/terminal">Embedded AI Terminal</a><a href="/en/docs/prometheus-ai/memoria">Persistent Memory</a><a href="/en/docs/prometheus-ai/historial">History & Sessions</a></div><div class="side-cat"><div class="cat">Preserved Features</div><a href="/en/docs/conservadas/terminal">Integrated Terminal</a><a href="/en/docs/conservadas/git">Git & Version Control</a><a href="/en/docs/conservadas/debugging">Debugging</a><a href="/en/docs/conservadas/extensiones">Extensions (Open VSX)</a><a href="/en/docs/conservadas/live-preview">Live Preview</a><a href="/en/docs/conservadas/temas">Themes</a></div></aside>
+  <main><div class="crumb">Home › Docs › Prometheus AI › Automatic Agents (423)</div><h1>Automatic Agents (423)</h1>
+<p>Agents are specialists with their own instructions: a testing agent knows how
+to generate and run pytest tests, a Rust agent knows the cargo conventions,
+and so on up to 423 profiles. Prometheus AI searches for them, adopts them
+and works with them inside the chat, with nothing to configure.</p>
+<h2 id="s0">Where the 423 agents come from</h2>
+<p>The catalog combines two sources:</p>
+<table>
+<thead>
+<tr>
+<th>Source</th>
+<th>What it provides</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GitHub AI Templates</td>
+<td>the agents from the open AI templates catalog</td>
+</tr>
+<tr>
+<td>Installed on your system</td>
+<td>the ones in <code>~/.claude/agents</code> (global) and in <code>.claude/agents</code> in the workspace (per project)</td>
+</tr>
+</tbody></table>
+<p>Some ship with the editor and others were installed by you or your team; they
+all appear in the same catalog and Prometheus AI treats them the same.</p>
+<h2 id="s1">The catalog always at hand</h2>
+<p>Since August 2026, the full catalog — names, categories and descriptions — is
+injected into the chat context. Prometheus AI knows every agent from the
+first message, no need to search first.</p>
+<p>To avoid wasting context, the injection has a token budget with graceful
+degradation:</p>
+<table>
+<thead>
+<tr>
+<th>If the catalog…</th>
+<th>What is injected…</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>fits in the budget</td>
+<td>full catalog (name, category and description of every agent)</td>
+</tr>
+<tr>
+<td>exceeds the budget</td>
+<td>names only</td>
+</tr>
+<tr>
+<td>still exceeds</td>
+<td>the 20 most relevant agents per category</td>
+</tr>
+</tbody></table>
+<p>In practice the full catalog almost always fits; degradation only shows up
+with models with a very small context window.</p>
+<h2 id="s2">Searching for agents</h2>
+<p>Besides the injected catalog, the chat exposes <code>search_agents</code> for keyword
+searches:</p>
+<pre><code class="language-text">search_agents(&quot;testing python&quot;, &quot;Development&quot;)
+</code></pre>
+<p>Each agent scores points depending on where the words appear:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Weight</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Name</td>
+<td>×3</td>
+</tr>
+<tr>
+<td>Description</td>
+<td>×2</td>
+</tr>
+<tr>
+<td>Category</td>
+<td>×1</td>
+</tr>
+</tbody></table>
+<p>Results are sorted by score and the <strong>top 10</strong> are returned. There is also
+<code>list_agents(category)</code>, which lists up to 50 agents from a category — handy
+for browsing a whole area.</p>
+<blockquote>
+<p><strong>Tip:</strong> search by what the agent does, not by its name: &quot;rest api&quot; or
+&quot;django&quot; will find more than recalling exact names.</p>
+</blockquote>
+<h2 id="s3">Adopting an agent</h2>
+<p>When Prometheus AI picks an agent, it runs <code>use_agent</code> with its name and the
+conversation continues in that role: the agent&#39;s instructions are injected
+into the model context, and from then on it answers as the corresponding
+specialist.</p>
+<pre><code class="language-text">use_agent(&quot;python-tester&quot;)
+→ Adopting role: python-tester…
+</code></pre>
+<blockquote>
+<p><strong>Note:</strong> adopting an agent changes nothing in your environment: nothing is
+installed and your configuration is untouched. It is only context the model
+starts taking into account.</p>
+</blockquote>
+<h2 id="s4">Autonomy in the chat</h2>
+<p>The agent tools (<code>search_agents</code>, <code>list_agents</code>, <code>use_agent</code>) are <strong>always
+available</strong> in the chat: they do not depend on any manual selection. The
+autonomy system prompt (in the editor&#39;s language, Spanish or English) tells
+the model it may search and adopt agents on its own when the task calls for
+it — you ask for the result, not for the tool.</p>
+<h2 id="s5">In the chat</h2>
+<p>This is what a real conversation looks like where Prometheus AI searches for
+and adopts an agent on its own:</p>
+<p><img src="/assets/agentes-chat-1.png" alt="Prometheus AI searching for and adopting an agent in the chat"></p>
+<p>And another example from the same conversation, with the search and the
+already-adopted agent:</p>
+<p><img src="/assets/agentes-chat-2.png" alt="Agent search and adoption in the chat"></p>
+<h2 id="s6">What&#39;s next</h2>
+<ul>
+<li><a href="terminal">Embedded AI Terminal</a> — the hidden terminal where commands run.</li>
+<li><a href="memoria">Persistent Memory</a> — what Prometheus AI remembers between
+sessions.</li>
+<li><a href="historial">History &amp; Sessions</a> — previous conversations.</li>
+</ul>
+<div class="feedback-box"><span>Was this page helpful?</span><span class="fb-btn">👍</span><span class="fb-btn">👎</span><span style="margin-left:auto;color:#8b949e">Automatic Agents (423)</span></div><div class="prevnext"><a href="/en/docs/modelos/gpu">← modelos/gpu</a><a href="/en/docs/prometheus-ai/historial">prometheus-ai/historial →</a></div></main>
+  <aside class="toc"><div class="t">On this page</div><a href="#s0">Where the 423 agents come from</a><a href="#s1">The catalog always at hand</a><a href="#s2">Searching for agents</a><a href="#s3">Adopting an agent</a><a href="#s4">Autonomy in the chat</a><a href="#s5">In the chat</a><a href="#s6">What&#39;s next</a></aside>
+</div>
+<footer><div class="wrap foot-row">
+  <span>🌐 GitHub</span><span>🐦 X</span><span>📺 YouTube</span><span>💬 Reddit</span>
+  <div class="foot-links"><span>Support</span><span>Privacy</span><span>Manage cookies</span><span>Terms of use</span><span>License</span></div>
+</div></footer>
+</body>
+</html>

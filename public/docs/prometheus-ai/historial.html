@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Historial y sesiones</title>
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<nav class="nav"><div class="wrap nav-inner">
+  <div class="logo"><div class="logo-badge">▲</div> Prometheus Code</div>
+  <div class="nav-links">
+    <a href="/#features">Funciones ▾</a>
+    <a href="/docs/empezar/instalacion" class="active">Docs</a>
+    <a href="/#descargas">Descargas</a>
+    <span>Blog</span><span>FAQ</span><span>Recursos ▾</span>
+  </div>
+  <div class="nav-right">
+    <a class="lang-toggle" href="/en/docs/prometheus-ai/historial">EN</a>
+    <a class="btn-download" href="/#descargas">Descargar</a>
+  </div>
+</div></nav>
+<div class="banner"><span class="x">✕</span><b>Nuevo:</b> 423 agentes especializados + modelos locales llama.cpp integrados — sin nube, sin suscripción</div>
+<div class="wrap layout">
+  <aside class="sidebar"><div class="side-cat"><div class="cat">Empezar</div><a href="/docs/empezar/instalacion">Descarga e instalación</a><a href="/docs/empezar/primeros-pasos">Primeros pasos</a><a href="/docs/empezar/faq">Preguntas frecuentes</a></div><div class="side-cat"><div class="cat">Modelos locales</div><a href="/docs/modelos/configuracion">Configuración</a><a href="/docs/modelos/busqueda-hf">Búsqueda en Hugging Face</a><a href="/docs/modelos/contexto">Contexto y memoria</a><a href="/docs/modelos/gpu">Requisitos de GPU</a></div><div class="side-cat"><div class="cat">Prometheus AI</div><a href="/docs/prometheus-ai/agentes">Agentes automáticos (423)</a><a href="/docs/prometheus-ai/terminal">Terminal IA embebida</a><a href="/docs/prometheus-ai/memoria">Memoria persistente</a><a href="/docs/prometheus-ai/historial" class="active">Historial y sesiones</a></div><div class="side-cat"><div class="cat">Funciones conservadas</div><a href="/docs/conservadas/terminal">Terminal integrada</a><a href="/docs/conservadas/git">Git y control de versiones</a><a href="/docs/conservadas/debugging">Debugging</a><a href="/docs/conservadas/extensiones">Extensiones (Open VSX)</a><a href="/docs/conservadas/live-preview">Live Preview</a><a href="/docs/conservadas/temas">Temas</a></div></aside>
+  <main><div class="crumb">Inicio › Docs › Prometheus AI › Historial y sesiones</div><h1>Historial y sesiones</h1>
+<p>Cada conversación con Prometheus AI es una sesión, y las sesiones anteriores
+quedan guardadas. Podés volver a una conversación vieja y continuarla donde
+quedó, o reiniciar la conversación actual y empezar de cero cuando quieras.</p>
+<h2 id="s0">Sesiones guardadas</h2>
+<p>Las sesiones se guardan en el storage local del editor, bajo la clave
+<code>prometheus.ai.chat.sessions.v1</code>, con un máximo de <strong>50 sesiones</strong>. Las más
+viejas se descartan automáticamente cuando se llega al límite.</p>
+<table>
+<thead>
+<tr>
+<th>Dato</th>
+<th>Valor</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Almacenamiento</td>
+<td>storage local del editor</td>
+</tr>
+<tr>
+<td>Clave</td>
+<td><code>prometheus.ai.chat.sessions.v1</code></td>
+</tr>
+<tr>
+<td>Sesiones</td>
+<td>máximo 50</td>
+</tr>
+</tbody></table>
+<p>Todo queda en tu máquina: el historial no se envía a ningún servidor.</p>
+<h2 id="s1">Vista de historial en el chat</h2>
+<p>El chat incluye una vista de historial donde aparecen las sesiones
+anteriores, identificadas por su primer mensaje. Un clic abre la sesión y la
+conversación queda lista para continuar.</p>
+<h2 id="s2">Continuar una conversación</h2>
+<p>Al abrir una sesión anterior, el chat vuelve a donde quedó: los mensajes
+siguen en pantalla y el modelo recupera el contexto de esa conversación.
+Cerrar el editor no pierde nada: la sesión queda guardada y reaparece intacta
+la próxima vez.</p>
+<blockquote>
+<p><strong>Tip:</strong> si trabajás en varios proyectos, alterná entre sesiones según el
+tema — cada una conserva su propio hilo.</p>
+</blockquote>
+<h2 id="s3">Reiniciar la conversación</h2>
+<p>Cuando preferís empezar de nuevo, reiniciá la sesión actual: el chat se
+limpia y la conversación arranca desde cero. La sesión anterior no se pierde:
+queda en el historial, y podés volver a ella cuando quieras.</p>
+<h2 id="s4">Qué sigue</h2>
+<ul>
+<li><a href="agentes">Agentes automáticos (423)</a> — los especialistas del chat.</li>
+<li><a href="terminal">Terminal IA embebida</a> — la terminal oculta donde corren los
+comandos.</li>
+<li><a href="memoria">Memoria persistente</a> — lo que Prometheus AI recuerda entre
+sesiones.</li>
+</ul>
+<div class="feedback-box"><span>¿Te resultó útil esta página?</span><span class="fb-btn">👍</span><span class="fb-btn">👎</span><span style="margin-left:auto;color:#8b949e">Historial y sesiones</span></div><div class="prevnext"><a href="/docs/prometheus-ai/agentes">← prometheus-ai/agentes</a><a href="/docs/prometheus-ai/memoria">prometheus-ai/memoria →</a></div></main>
+  <aside class="toc"><div class="t">En esta página</div><a href="#s0">Sesiones guardadas</a><a href="#s1">Vista de historial en el chat</a><a href="#s2">Continuar una conversación</a><a href="#s3">Reiniciar la conversación</a><a href="#s4">Qué sigue</a></aside>
+</div>
+<footer><div class="wrap foot-row">
+  <span>🌐 GitHub</span><span>🐦 X</span><span>📺 YouTube</span><span>💬 Reddit</span>
+  <div class="foot-links"><span>Soporte</span><span>Privacidad</span><span>Gestión de cookies</span><span>Términos de uso</span><span>Licencia</span></div>
+</div></footer>
+</body>
+</html>
