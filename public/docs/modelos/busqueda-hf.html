@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Búsqueda en Hugging Face</title>
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<nav class="nav"><div class="wrap nav-inner">
+  <div class="logo"><div class="logo-badge">▲</div> Prometheus Code</div>
+  <div class="nav-links">
+    <a href="/#features">Funciones ▾</a>
+    <a href="/docs/empezar/instalacion" class="active">Docs</a>
+    <a href="/#descargas">Descargas</a>
+    <span>Blog</span><span>FAQ</span><span>Recursos ▾</span>
+  </div>
+  <div class="nav-right">
+    <a class="lang-toggle" href="/en/docs/modelos/busqueda-hf">EN</a>
+    <a class="btn-download" href="/#descargas">Descargar</a>
+  </div>
+</div></nav>
+<div class="banner"><span class="x">✕</span><b>Nuevo:</b> 423 agentes especializados + modelos locales llama.cpp integrados — sin nube, sin suscripción</div>
+<div class="wrap layout">
+  <aside class="sidebar"><div class="side-cat"><div class="cat">Empezar</div><a href="/docs/empezar/instalacion">Descarga e instalación</a><a href="/docs/empezar/primeros-pasos">Primeros pasos</a><a href="/docs/empezar/faq">Preguntas frecuentes</a></div><div class="side-cat"><div class="cat">Modelos locales</div><a href="/docs/modelos/configuracion">Configuración</a><a href="/docs/modelos/busqueda-hf" class="active">Búsqueda en Hugging Face</a><a href="/docs/modelos/contexto">Contexto y memoria</a><a href="/docs/modelos/gpu">Requisitos de GPU</a></div><div class="side-cat"><div class="cat">Prometheus AI</div><a href="/docs/prometheus-ai/agentes">Agentes automáticos (423)</a><a href="/docs/prometheus-ai/terminal">Terminal IA embebida</a><a href="/docs/prometheus-ai/memoria">Memoria persistente</a><a href="/docs/prometheus-ai/historial">Historial y sesiones</a></div><div class="side-cat"><div class="cat">Funciones conservadas</div><a href="/docs/conservadas/terminal">Terminal integrada</a><a href="/docs/conservadas/git">Git y control de versiones</a><a href="/docs/conservadas/debugging">Debugging</a><a href="/docs/conservadas/extensiones">Extensiones (Open VSX)</a><a href="/docs/conservadas/live-preview">Live Preview</a><a href="/docs/conservadas/temas">Temas</a></div></aside>
+  <main><div class="crumb">Inicio › Docs › Modelos locales › Búsqueda en Hugging Face</div><h1>Búsqueda en Hugging Face</h1>
+<p>El panel LlamaCpp incluye un catálogo integrado de Hugging Face: buscás un
+modelo GGUF, elegís la cuantización y lo descargás sin salir del editor. La
+descarga se pausa y resume, y sigue en segundo plano aunque cierres el panel.</p>
+<p><img src="/assets/hf-search.png" alt="Buscador de Hugging Face integrado en el panel LlamaCpp"></p>
+<h2 id="s0">Cómo buscar</h2>
+<ol>
+<li>En <strong>Catálogo Hugging Face</strong>, escribí el nombre del modelo (ej. <code>qwen gguf</code>).</li>
+<li>El resultado muestra los repos encontrados y sus archivos GGUF, con la
+cuantización detectada para cada uno.</li>
+<li>Elegí una cuantización y clic en <strong>Descargar</strong>.</li>
+<li>Cuando termina, clic en <strong>Activar</strong> sobre el modelo descargado.</li>
+</ol>
+<p>El modelo queda en <code>~/.prometheus-code/llamacpp/models/</code> y se recuerda entre
+sesiones.</p>
+<h2 id="s1">Límite de 20 resultados</h2>
+<p>La búsqueda pide 20 resultados por consulta. No es una limitación de diseño:
+Hugging Face restringe a 500 peticiones cada 300 segundos y, con páginas
+grandes, el catálogo toca ese límite fácilmente. Con <code>limit=20</code> las búsquedas
+siguen siendo fluidas sin caer en rate limit.</p>
+<blockquote>
+<p><strong>Tip:</strong> si buscás algo muy específico y no aparece, acortá la consulta a lo
+esencial (ej. <code>qwen 7b gguf</code> en vez de la versión completa) y refiná con las
+cuantizaciones.</p>
+</blockquote>
+<h2 id="s2">Detección de cuantizaciones</h2>
+<p>El catálogo identifica automáticamente la cuantización de cada archivo GGUF,
+incluida la nomenclatura nueva de llama.cpp:</p>
+<table>
+<thead>
+<tr>
+<th>Cuantización</th>
+<th>Perfil</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Q4_K_M</code> / <code>IQ4_XS</code></td>
+<td>equilibrio calidad/VRAM (recomendada)</td>
+</tr>
+<tr>
+<td><code>Q6_K</code> / <code>Q8_0</code></td>
+<td>más calidad, más VRAM</td>
+</tr>
+<tr>
+<td><code>Q8_0_8_8</code></td>
+<td>cuantización compuesta para GPU Blackwell</td>
+</tr>
+<tr>
+<td><code>MXFP4_MOE</code></td>
+<td>formato de punto flotante para modelos MoE</td>
+</tr>
+</tbody></table>
+<p>Si el nombre de un archivo no coincide con ningún patrón conocido, el modelo
+se muestra igualmente sin cuantización identificada.</p>
+<blockquote>
+<p><strong>Nota:</strong> el catálogo solo lista modelos en formato GGUF, que es el que
+entiende <code>llama-server</code>. Un repo que solo tenga safetensors no aparece como
+descargable.</p>
+</blockquote>
+<h2 id="s3">Qué sigue</h2>
+<ul>
+<li><a href="contexto">Contexto y memoria</a> — cómo maneja la conversación el servidor.</li>
+</ul>
+<div class="feedback-box"><span>¿Te resultó útil esta página?</span><span class="fb-btn">👍</span><span class="fb-btn">👎</span><span style="margin-left:auto;color:#8b949e">Búsqueda en Hugging Face</span></div><div class="prevnext"><a href="/docs/empezar/primeros-pasos">← empezar/primeros-pasos</a><a href="/docs/modelos/configuracion">modelos/configuracion →</a></div></main>
+  <aside class="toc"><div class="t">En esta página</div><a href="#s0">Cómo buscar</a><a href="#s1">Límite de 20 resultados</a><a href="#s2">Detección de cuantizaciones</a><a href="#s3">Qué sigue</a></aside>
+</div>
+<footer><div class="wrap foot-row">
+  <span>🌐 GitHub</span><span>🐦 X</span><span>📺 YouTube</span><span>💬 Reddit</span>
+  <div class="foot-links"><span>Soporte</span><span>Privacidad</span><span>Gestión de cookies</span><span>Términos de uso</span><span>Licencia</span></div>
+</div></footer>
+</body>
+</html>

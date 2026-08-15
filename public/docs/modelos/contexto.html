@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contexto y memoria</title>
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<nav class="nav"><div class="wrap nav-inner">
+  <div class="logo"><div class="logo-badge">▲</div> Prometheus Code</div>
+  <div class="nav-links">
+    <a href="/#features">Funciones ▾</a>
+    <a href="/docs/empezar/instalacion" class="active">Docs</a>
+    <a href="/#descargas">Descargas</a>
+    <span>Blog</span><span>FAQ</span><span>Recursos ▾</span>
+  </div>
+  <div class="nav-right">
+    <a class="lang-toggle" href="/en/docs/modelos/contexto">EN</a>
+    <a class="btn-download" href="/#descargas">Descargar</a>
+  </div>
+</div></nav>
+<div class="banner"><span class="x">✕</span><b>Nuevo:</b> 423 agentes especializados + modelos locales llama.cpp integrados — sin nube, sin suscripción</div>
+<div class="wrap layout">
+  <aside class="sidebar"><div class="side-cat"><div class="cat">Empezar</div><a href="/docs/empezar/instalacion">Descarga e instalación</a><a href="/docs/empezar/primeros-pasos">Primeros pasos</a><a href="/docs/empezar/faq">Preguntas frecuentes</a></div><div class="side-cat"><div class="cat">Modelos locales</div><a href="/docs/modelos/configuracion">Configuración</a><a href="/docs/modelos/busqueda-hf">Búsqueda en Hugging Face</a><a href="/docs/modelos/contexto" class="active">Contexto y memoria</a><a href="/docs/modelos/gpu">Requisitos de GPU</a></div><div class="side-cat"><div class="cat">Prometheus AI</div><a href="/docs/prometheus-ai/agentes">Agentes automáticos (423)</a><a href="/docs/prometheus-ai/terminal">Terminal IA embebida</a><a href="/docs/prometheus-ai/memoria">Memoria persistente</a><a href="/docs/prometheus-ai/historial">Historial y sesiones</a></div><div class="side-cat"><div class="cat">Funciones conservadas</div><a href="/docs/conservadas/terminal">Terminal integrada</a><a href="/docs/conservadas/git">Git y control de versiones</a><a href="/docs/conservadas/debugging">Debugging</a><a href="/docs/conservadas/extensiones">Extensiones (Open VSX)</a><a href="/docs/conservadas/live-preview">Live Preview</a><a href="/docs/conservadas/temas">Temas</a></div></aside>
+  <main><div class="crumb">Inicio › Docs › Modelos locales › Contexto y memoria</div><h1>Contexto y memoria</h1>
+<p>El contexto es la memoria de trabajo del modelo: todo lo que la conversación
+usa para responder. Cuanto más grande, más cosas recuerda el modelo — pero
+cada token de contexto ocupa VRAM. Esta página explica cómo lo administra
+Prometheus Code para sacarle el máximo a 16 GB.</p>
+<h2 id="s0">Qué es la KV cache</h2>
+<p>Para cada token de la conversación, el modelo guarda una copia de sus estados
+internos (claves y valores de atención) en la <strong>KV cache</strong>. Ese es el costo
+real del contexto en memoria:</p>
+<table>
+<thead>
+<tr>
+<th>KV cache</th>
+<th>Costo por token</th>
+<th>8192 tokens</th>
+<th>12288 tokens</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>FP16 (por defecto)</td>
+<td>≈ 0.47 MB/token</td>
+<td>≈ 3.8 GB</td>
+<td>≈ 5.8 GB</td>
+</tr>
+<tr>
+<td>K/V cuantizada <code>q8_0</code></td>
+<td>≈ 0.24 MB/token</td>
+<td>≈ 1.9 GB</td>
+<td>≈ 2.9 GB</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><strong>Nota:</strong> los valores son aproximados y dependen del modelo. La idea es la
+misma siempre: la KV cache crece con la conversación, y cuantizarla la
+reduce a la mitad.</p>
+</blockquote>
+<h2 id="s1">De 8192 a 12288 tokens</h2>
+<p>Por defecto el contexto es de 8192 tokens. Como llama-server arranca con
+<code>--cache-type-k/-v q8_0</code>, la KV cache cuesta la mitad, y con eso la misma
+VRAM alcanza para una ventana de <strong>12288 tokens</strong> — un 50 % más de
+conversación. En una GPU de 16 GB, con un modelo de 12-14 GB, subir el
+contexto a 12288 deja aún ~1 GB libre.</p>
+<blockquote>
+<p><strong>Tip:</strong> probá con 12288 tokens cuando trabajes con proyectos grandes: el
+modelo lee más archivos del proyecto antes de que el contexto se llene.</p>
+</blockquote>
+<h2 id="s2">Resúmenes compactos</h2>
+<p>Cuando la conversación crece, el chat genera un <strong>resumen compacto</strong> cada 3
+turnos: condensa lo hablado hasta ese momento y lo agrega al contexto, de modo
+que el modelo sigue recordando el hilo sin que la conversación entera ocupe
+la KV cache.</p>
+<h2 id="s3">Truncado de mensajes largos</h2>
+<p>Los mensajes de más de <strong>5000 caracteres</strong> se truncan. El texto se corta a la
+longitud máxima y el resto se descarta, para que un mensaje gigante no
+inunde el contexto ni el costo de VRAM.</p>
+<h2 id="s4">Ventanas largas con <code>--context-shift</code></h2>
+<p>Para conversaciones que superan la ventana, llama-server usa
+<code>--context-shift</code>: cuando el contexto se llena, desplaza la ventana en lugar
+de reiniciarla, descartando la parte más vieja y conservando el final de la
+conversación. Combinado con los resúmenes compactos, la sesión se mantiene
+coherente aunque sea muy larga.</p>
+<blockquote>
+<p><strong>Nota:</strong> el contexto se gestiona automáticamente: no hay controles de
+contexto en el chat. Si querés más ventana, ajustá el slider de Contexto del
+modelo en su panel de configuración — <a href="configuracion">Configuración</a>.</p>
+</blockquote>
+<h2 id="s5">Qué sigue</h2>
+<ul>
+<li><a href="gpu">Requisitos de GPU</a> — qué modelos corren según tu VRAM.</li>
+</ul>
+<div class="feedback-box"><span>¿Te resultó útil esta página?</span><span class="fb-btn">👍</span><span class="fb-btn">👎</span><span style="margin-left:auto;color:#8b949e">Contexto y memoria</span></div><div class="prevnext"><a href="/docs/modelos/configuracion">← modelos/configuracion</a><a href="/docs/modelos/gpu">modelos/gpu →</a></div></main>
+  <aside class="toc"><div class="t">En esta página</div><a href="#s0">Qué es la KV cache</a><a href="#s1">De 8192 a 12288 tokens</a><a href="#s2">Resúmenes compactos</a><a href="#s3">Truncado de mensajes largos</a><a href="#s4">Ventanas largas con --context-shift</a><a href="#s5">Qué sigue</a></aside>
+</div>
+<footer><div class="wrap foot-row">
+  <span>🌐 GitHub</span><span>🐦 X</span><span>📺 YouTube</span><span>💬 Reddit</span>
+  <div class="foot-links"><span>Soporte</span><span>Privacidad</span><span>Gestión de cookies</span><span>Términos de uso</span><span>Licencia</span></div>
+</div></footer>
+</body>
+</html>

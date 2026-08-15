@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Configuración</title>
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<nav class="nav"><div class="wrap nav-inner">
+  <div class="logo"><div class="logo-badge">▲</div> Prometheus Code</div>
+  <div class="nav-links">
+    <a href="/#features">Funciones ▾</a>
+    <a href="/docs/empezar/instalacion" class="active">Docs</a>
+    <a href="/#descargas">Descargas</a>
+    <span>Blog</span><span>FAQ</span><span>Recursos ▾</span>
+  </div>
+  <div class="nav-right">
+    <a class="lang-toggle" href="/en/docs/modelos/configuracion">EN</a>
+    <a class="btn-download" href="/#descargas">Descargar</a>
+  </div>
+</div></nav>
+<div class="banner"><span class="x">✕</span><b>Nuevo:</b> 423 agentes especializados + modelos locales llama.cpp integrados — sin nube, sin suscripción</div>
+<div class="wrap layout">
+  <aside class="sidebar"><div class="side-cat"><div class="cat">Empezar</div><a href="/docs/empezar/instalacion">Descarga e instalación</a><a href="/docs/empezar/primeros-pasos">Primeros pasos</a><a href="/docs/empezar/faq">Preguntas frecuentes</a></div><div class="side-cat"><div class="cat">Modelos locales</div><a href="/docs/modelos/configuracion" class="active">Configuración</a><a href="/docs/modelos/busqueda-hf">Búsqueda en Hugging Face</a><a href="/docs/modelos/contexto">Contexto y memoria</a><a href="/docs/modelos/gpu">Requisitos de GPU</a></div><div class="side-cat"><div class="cat">Prometheus AI</div><a href="/docs/prometheus-ai/agentes">Agentes automáticos (423)</a><a href="/docs/prometheus-ai/terminal">Terminal IA embebida</a><a href="/docs/prometheus-ai/memoria">Memoria persistente</a><a href="/docs/prometheus-ai/historial">Historial y sesiones</a></div><div class="side-cat"><div class="cat">Funciones conservadas</div><a href="/docs/conservadas/terminal">Terminal integrada</a><a href="/docs/conservadas/git">Git y control de versiones</a><a href="/docs/conservadas/debugging">Debugging</a><a href="/docs/conservadas/extensiones">Extensiones (Open VSX)</a><a href="/docs/conservadas/live-preview">Live Preview</a><a href="/docs/conservadas/temas">Temas</a></div></aside>
+  <main><div class="crumb">Inicio › Docs › Modelos locales › Configuración</div><h1>Configuración</h1>
+<p>Los modelos locales corren con <code>llama-server</code> (llama.cpp), integrado en el
+editor y escuchando en <code>127.0.0.1:11434</code> — el mismo servidor y el mismo puerto
+que usa Ollama. Por eso los modelos que ya tenés con Ollama funcionan acá sin
+cambios.</p>
+<blockquote>
+<p><strong>Nota:</strong> el servidor no tiene panel de configuración propio: arranca con
+argumentos fijos, pensados para máxima compatibilidad. Lo que sí se
+configura, con sliders, es cada modelo descargado (contexto, offload y
+temperatura).</p>
+</blockquote>
+<h2 id="s0">Cómo arranca el servidor</h2>
+<p><code>llama-server</code> se compila localmente la primera vez que lo encendés (con
+soporte CUDA si tenés NVIDIA) y se ejecuta con estos parámetros fijos:</p>
+<table>
+<thead>
+<tr>
+<th>Argumento</th>
+<th>Valor</th>
+<th>Qué hace</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>llama-server</code></td>
+<td>binario compilado</td>
+<td>servidor HTTP de inferencia (llama.cpp)</td>
+</tr>
+<tr>
+<td><code>--port</code></td>
+<td><code>11434</code></td>
+<td>mismo puerto que usa Ollama</td>
+</tr>
+<tr>
+<td><code>-c</code></td>
+<td>según el modelo</td>
+<td>ventana de contexto</td>
+</tr>
+<tr>
+<td><code>--context-shift</code></td>
+<td>—</td>
+<td>mantiene conversaciones largas sin perder el hilo</td>
+</tr>
+<tr>
+<td><code>--cache-type-k</code> / <code>--cache-type-v</code></td>
+<td><code>q8_0</code></td>
+<td>KV cache cuantizada, la mitad de VRAM</td>
+</tr>
+<tr>
+<td><code>-ngl</code></td>
+<td><code>99</code></td>
+<td>offload de 99 capas a la GPU</td>
+</tr>
+<tr>
+<td><code>-fa</code></td>
+<td><code>on</code></td>
+<td>flash attention</td>
+</tr>
+<tr>
+<td><code>--jinja</code></td>
+<td>—</td>
+<td>plantillas de chat de los modelos que las soportan</td>
+</tr>
+</tbody></table>
+<p>La VRAM usada se muestra en el panel, y con los botones <strong>Stop</strong> y <strong>Start</strong>
+podés detener y volver a encender el servidor cuando quieras.</p>
+<blockquote>
+<p><strong>Tip:</strong> el servidor en <code>11434</code> responde como API HTTP estándar de Ollama:
+si ya tenés herramientas configuradas contra ese puerto, siguen
+funcionando sin tocar nada.</p>
+</blockquote>
+<h2 id="s1">Panel de configuración del modelo</h2>
+<p>Cada modelo descargado tiene su propio panel con sliders que ajustan cómo se
+ejecuta:</p>
+<p><img src="/assets/sliders-modelo.png" alt="Panel de configuración del modelo descargado con sus sliders"></p>
+<table>
+<thead>
+<tr>
+<th>Control</th>
+<th>Qué hace</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Contexto</td>
+<td>ventana de contexto (<code>-c</code>), p. ej. 8192 tokens</td>
+</tr>
+<tr>
+<td>Capas GPU</td>
+<td>cuántas capas se offloadean a la GPU (<code>-ngl</code>)</td>
+</tr>
+<tr>
+<td>Temperatura</td>
+<td>creatividad de las respuestas</td>
+</tr>
+</tbody></table>
+<p>El botón <strong>Aplicar</strong> reinicia el servidor con los nuevos valores; el cambio
+queda guardado entre sesiones.</p>
+<blockquote>
+<p><strong>Nota:</strong> con 16 GB de VRAM, subir el contexto hasta 12288 tokens sigue
+cabiendo gracias a la KV cache cuantizada — lo detallamos en <a href="contexto">Contexto y
+memoria</a>.</p>
+</blockquote>
+<h2 id="s2">Qué sigue</h2>
+<ul>
+<li><a href="busqueda-hf">Búsqueda en Hugging Face</a> — encontrar y descargar modelos GGUF
+desde el catálogo integrado.</li>
+</ul>
+<div class="feedback-box"><span>¿Te resultó útil esta página?</span><span class="fb-btn">👍</span><span class="fb-btn">👎</span><span style="margin-left:auto;color:#8b949e">Configuración</span></div><div class="prevnext"><a href="/docs/modelos/busqueda-hf">← modelos/busqueda-hf</a><a href="/docs/modelos/contexto">modelos/contexto →</a></div></main>
+  <aside class="toc"><div class="t">En esta página</div><a href="#s0">Cómo arranca el servidor</a><a href="#s1">Panel de configuración del modelo</a><a href="#s2">Qué sigue</a></aside>
+</div>
+<footer><div class="wrap foot-row">
+  <span>🌐 GitHub</span><span>🐦 X</span><span>📺 YouTube</span><span>💬 Reddit</span>
+  <div class="foot-links"><span>Soporte</span><span>Privacidad</span><span>Gestión de cookies</span><span>Términos de uso</span><span>Licencia</span></div>
+</div></footer>
+</body>
+</html>

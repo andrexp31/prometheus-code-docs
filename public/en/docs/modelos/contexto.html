@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Context & Memory</title>
+<link rel="stylesheet" href="/en/assets/site.css">
+</head>
+<body>
+<nav class="nav"><div class="wrap nav-inner">
+  <div class="logo"><div class="logo-badge">▲</div> Prometheus Code</div>
+  <div class="nav-links">
+    <a href="/en/#features">Features ▾</a>
+    <a href="/en/docs/empezar/instalacion" class="active">Docs</a>
+    <a href="/en/#descargas">Downloads</a>
+    <span>Blog</span><span>FAQ</span><span>Resources ▾</span>
+  </div>
+  <div class="nav-right">
+    <a class="lang-toggle" href="/docs/modelos/contexto">ES</a>
+    <a class="btn-download" href="/en/#descargas">Download</a>
+  </div>
+</div></nav>
+<div class="banner"><span class="x">✕</span><b>New:</b> 423 specialized agents + integrated local llama.cpp models — no cloud, no subscription</div>
+<div class="wrap layout">
+  <aside class="sidebar"><div class="side-cat"><div class="cat">Getting Started</div><a href="/en/docs/empezar/instalacion">Download & Install</a><a href="/en/docs/empezar/primeros-pasos">First Steps</a><a href="/en/docs/empezar/faq">FAQ</a></div><div class="side-cat"><div class="cat">Local Models</div><a href="/en/docs/modelos/configuracion">Configuration</a><a href="/en/docs/modelos/busqueda-hf">Hugging Face Search</a><a href="/en/docs/modelos/contexto" class="active">Context & Memory</a><a href="/en/docs/modelos/gpu">GPU Requirements</a></div><div class="side-cat"><div class="cat">Prometheus AI</div><a href="/en/docs/prometheus-ai/agentes">Automatic Agents (423)</a><a href="/en/docs/prometheus-ai/terminal">Embedded AI Terminal</a><a href="/en/docs/prometheus-ai/memoria">Persistent Memory</a><a href="/en/docs/prometheus-ai/historial">History & Sessions</a></div><div class="side-cat"><div class="cat">Preserved Features</div><a href="/en/docs/conservadas/terminal">Integrated Terminal</a><a href="/en/docs/conservadas/git">Git & Version Control</a><a href="/en/docs/conservadas/debugging">Debugging</a><a href="/en/docs/conservadas/extensiones">Extensions (Open VSX)</a><a href="/en/docs/conservadas/live-preview">Live Preview</a><a href="/en/docs/conservadas/temas">Themes</a></div></aside>
+  <main><div class="crumb">Home › Docs › Local Models › Context & Memory</div><h1>Context &amp; Memory</h1>
+<p>The context is the model&#39;s working memory: everything the conversation uses
+to answer. The larger it is, the more the model remembers — but every context
+token takes VRAM. This page explains how Prometheus Code manages it to get
+the most out of 16 GB.</p>
+<h2 id="s0">What the KV cache is</h2>
+<p>For every token in the conversation, the model keeps a copy of its internal
+states (attention keys and values) in the <strong>KV cache</strong>. That&#39;s the real cost
+of context in memory:</p>
+<table>
+<thead>
+<tr>
+<th>KV cache</th>
+<th>Cost per token</th>
+<th>8192 tokens</th>
+<th>12288 tokens</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>FP16 (default)</td>
+<td>≈ 0.47 MB/token</td>
+<td>≈ 3.8 GB</td>
+<td>≈ 5.8 GB</td>
+</tr>
+<tr>
+<td>Quantized K/V <code>q8_0</code></td>
+<td>≈ 0.24 MB/token</td>
+<td>≈ 1.9 GB</td>
+<td>≈ 2.9 GB</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><strong>Note:</strong> the values are approximate and depend on the model. The idea is
+always the same: the KV cache grows with the conversation, and quantizing
+it cuts the cost in half.</p>
+</blockquote>
+<h2 id="s1">From 8192 to 12288 tokens</h2>
+<p>The default context is 8192 tokens. Since llama-server starts with
+<code>--cache-type-k/-v q8_0</code>, the KV cache costs half, and with that the same
+VRAM fits a window of <strong>12288 tokens</strong> — 50 % more conversation. On a 16 GB
+GPU, with a 12-14 GB model, raising the context to 12288 still leaves about
+1 GB free.</p>
+<blockquote>
+<p><strong>Tip:</strong> try 12288 tokens when working with large projects: the model reads
+more project files before the context fills up.</p>
+</blockquote>
+<h2 id="s2">Compact summaries</h2>
+<p>As the conversation grows, the chat generates a <strong>compact summary</strong> every 3
+turns: it condenses what was discussed so far and adds it to the context, so
+the model keeps remembering the thread without the whole conversation
+occupying the KV cache.</p>
+<h2 id="s3">Truncating long messages</h2>
+<p>Messages longer than <strong>5000 characters</strong> are truncated. The text is cut to
+the maximum length and the rest is discarded, so a giant message doesn&#39;t
+flood the context or the VRAM cost.</p>
+<h2 id="s4">Long windows with <code>--context-shift</code></h2>
+<p>For conversations that exceed the window, llama-server uses
+<code>--context-shift</code>: when the context fills up, it shifts the window instead
+of resetting it, discarding the oldest part and keeping the end of the
+conversation. Combined with the compact summaries, the session stays
+coherent even when very long.</p>
+<blockquote>
+<p><strong>Note:</strong> context is managed automatically: there are no context controls
+in the chat. If you want a larger window, adjust the model&#39;s Context slider
+in its configuration panel — <a href="configuracion">Configuration</a>.</p>
+</blockquote>
+<h2 id="s5">What&#39;s next</h2>
+<ul>
+<li><a href="gpu">GPU Requirements</a> — which models run on your VRAM.</li>
+</ul>
+<div class="feedback-box"><span>Was this page helpful?</span><span class="fb-btn">👍</span><span class="fb-btn">👎</span><span style="margin-left:auto;color:#8b949e">Context & Memory</span></div><div class="prevnext"><a href="/en/docs/modelos/configuracion">← modelos/configuracion</a><a href="/en/docs/modelos/gpu">modelos/gpu →</a></div></main>
+  <aside class="toc"><div class="t">On this page</div><a href="#s0">What the KV cache is</a><a href="#s1">From 8192 to 12288 tokens</a><a href="#s2">Compact summaries</a><a href="#s3">Truncating long messages</a><a href="#s4">Long windows with --context-shift</a><a href="#s5">What&#39;s next</a></aside>
+</div>
+<footer><div class="wrap foot-row">
+  <span>🌐 GitHub</span><span>🐦 X</span><span>📺 YouTube</span><span>💬 Reddit</span>
+  <div class="foot-links"><span>Support</span><span>Privacy</span><span>Manage cookies</span><span>Terms of use</span><span>License</span></div>
+</div></footer>
+</body>
+</html>

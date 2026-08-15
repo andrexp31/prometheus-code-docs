@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GPU Requirements</title>
+<link rel="stylesheet" href="/en/assets/site.css">
+</head>
+<body>
+<nav class="nav"><div class="wrap nav-inner">
+  <div class="logo"><div class="logo-badge">▲</div> Prometheus Code</div>
+  <div class="nav-links">
+    <a href="/en/#features">Features ▾</a>
+    <a href="/en/docs/empezar/instalacion" class="active">Docs</a>
+    <a href="/en/#descargas">Downloads</a>
+    <span>Blog</span><span>FAQ</span><span>Resources ▾</span>
+  </div>
+  <div class="nav-right">
+    <a class="lang-toggle" href="/docs/modelos/gpu">ES</a>
+    <a class="btn-download" href="/en/#descargas">Download</a>
+  </div>
+</div></nav>
+<div class="banner"><span class="x">✕</span><b>New:</b> 423 specialized agents + integrated local llama.cpp models — no cloud, no subscription</div>
+<div class="wrap layout">
+  <aside class="sidebar"><div class="side-cat"><div class="cat">Getting Started</div><a href="/en/docs/empezar/instalacion">Download & Install</a><a href="/en/docs/empezar/primeros-pasos">First Steps</a><a href="/en/docs/empezar/faq">FAQ</a></div><div class="side-cat"><div class="cat">Local Models</div><a href="/en/docs/modelos/configuracion">Configuration</a><a href="/en/docs/modelos/busqueda-hf">Hugging Face Search</a><a href="/en/docs/modelos/contexto">Context & Memory</a><a href="/en/docs/modelos/gpu" class="active">GPU Requirements</a></div><div class="side-cat"><div class="cat">Prometheus AI</div><a href="/en/docs/prometheus-ai/agentes">Automatic Agents (423)</a><a href="/en/docs/prometheus-ai/terminal">Embedded AI Terminal</a><a href="/en/docs/prometheus-ai/memoria">Persistent Memory</a><a href="/en/docs/prometheus-ai/historial">History & Sessions</a></div><div class="side-cat"><div class="cat">Preserved Features</div><a href="/en/docs/conservadas/terminal">Integrated Terminal</a><a href="/en/docs/conservadas/git">Git & Version Control</a><a href="/en/docs/conservadas/debugging">Debugging</a><a href="/en/docs/conservadas/extensiones">Extensions (Open VSX)</a><a href="/en/docs/conservadas/live-preview">Live Preview</a><a href="/en/docs/conservadas/temas">Themes</a></div></aside>
+  <main><div class="crumb">Home › Docs › Local Models › GPU Requirements</div><h1>GPU Requirements</h1>
+<p>Local models run without a GPU: if you don&#39;t have one, llama-server works on
+the CPU and everything functions, just slower. With an NVIDIA GPU, the engine
+compiles with CUDA support and the model layers run on VRAM, which is where
+you feel the real speed. The reference for this guide is an <strong>RTX 5060 Ti
+with 16 GB</strong>.</p>
+<h2 id="s0">How much VRAM you need</h2>
+<p>VRAM holds the model (its weights) and the KV cache of the context. The
+practical rule: with 16 GB you comfortably run 12-14 GB models at Q4_K_M or
+IQ4_XS quantization, the classic quality/memory balance:</p>
+<table>
+<thead>
+<tr>
+<th>VRAM</th>
+<th>Typical models</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>8 GB</td>
+<td>mid-size models, aggressive quantization</td>
+</tr>
+<tr>
+<td>12 GB</td>
+<td>7-8 GB models with headroom</td>
+</tr>
+<tr>
+<td>16 GB</td>
+<td>12-14 GB models (Q4_K_M / IQ4_XS)</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><strong>Tip:</strong> <code>Q4_K_M</code> and <code>IQ4_XS</code> perform almost as well as the original
+model for chat use, with less than half the VRAM. Reserve <code>Q8_0</code> for when
+quality matters more than space.</p>
+</blockquote>
+<h2 id="s1">Offloading 99 layers</h2>
+<p>Prometheus Code starts llama-server with <code>-ngl 99</code>: up to 99 model layers run
+on the GPU, practically the whole model. In practice, offload adjusts itself
+to what the VRAM fits; layers that don&#39;t fit stay on the CPU.</p>
+<p><img src="/assets/nvidia-smi.png" alt="nvidia-smi showing the VRAM used by llama-server"></p>
+<p>With the context at 12288 tokens (quantized <code>q8_0</code> KV cache), a 12-14 GB
+model leaves roughly <strong>1 GB free</strong> out of the 16 GB — headroom for the
+desktop and the rest of the system.</p>
+<blockquote>
+<p><strong>Note:</strong> the model&#39;s sliders (GPU Layers) control how many layers are
+offloaded. Lowering it reduces VRAM usage at the cost of speed; raising it
+does the opposite, up to what your GPU supports.</p>
+</blockquote>
+<h2 id="s2">Checking VRAM usage</h2>
+<p>From the terminal you can watch the VRAM llama-server occupies live:</p>
+<pre><code class="language-bash">nvidia-smi
+</code></pre>
+<p>The process is called <code>llama-server</code> and appears in the list with its used
+memory. The LlamaCpp panel also shows the VRAM in use, without leaving the
+editor.</p>
+<h2 id="s3">What&#39;s next</h2>
+<ul>
+<li><a href="configuracion">Configuration</a> — the parameters the server starts with.</li>
+</ul>
+<div class="feedback-box"><span>Was this page helpful?</span><span class="fb-btn">👍</span><span class="fb-btn">👎</span><span style="margin-left:auto;color:#8b949e">GPU Requirements</span></div><div class="prevnext"><a href="/en/docs/modelos/contexto">← modelos/contexto</a><span></span></div></main>
+  <aside class="toc"><div class="t">On this page</div><a href="#s0">How much VRAM you need</a><a href="#s1">Offloading 99 layers</a><a href="#s2">Checking VRAM usage</a><a href="#s3">What&#39;s next</a></aside>
+</div>
+<footer><div class="wrap foot-row">
+  <span>🌐 GitHub</span><span>🐦 X</span><span>📺 YouTube</span><span>💬 Reddit</span>
+  <div class="foot-links"><span>Support</span><span>Privacy</span><span>Manage cookies</span><span>Terms of use</span><span>License</span></div>
+</div></footer>
+</body>
+</html>

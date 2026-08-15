@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Configuration</title>
+<link rel="stylesheet" href="/en/assets/site.css">
+</head>
+<body>
+<nav class="nav"><div class="wrap nav-inner">
+  <div class="logo"><div class="logo-badge">▲</div> Prometheus Code</div>
+  <div class="nav-links">
+    <a href="/en/#features">Features ▾</a>
+    <a href="/en/docs/empezar/instalacion" class="active">Docs</a>
+    <a href="/en/#descargas">Downloads</a>
+    <span>Blog</span><span>FAQ</span><span>Resources ▾</span>
+  </div>
+  <div class="nav-right">
+    <a class="lang-toggle" href="/docs/modelos/configuracion">ES</a>
+    <a class="btn-download" href="/en/#descargas">Download</a>
+  </div>
+</div></nav>
+<div class="banner"><span class="x">✕</span><b>New:</b> 423 specialized agents + integrated local llama.cpp models — no cloud, no subscription</div>
+<div class="wrap layout">
+  <aside class="sidebar"><div class="side-cat"><div class="cat">Getting Started</div><a href="/en/docs/empezar/instalacion">Download & Install</a><a href="/en/docs/empezar/primeros-pasos">First Steps</a><a href="/en/docs/empezar/faq">FAQ</a></div><div class="side-cat"><div class="cat">Local Models</div><a href="/en/docs/modelos/configuracion" class="active">Configuration</a><a href="/en/docs/modelos/busqueda-hf">Hugging Face Search</a><a href="/en/docs/modelos/contexto">Context & Memory</a><a href="/en/docs/modelos/gpu">GPU Requirements</a></div><div class="side-cat"><div class="cat">Prometheus AI</div><a href="/en/docs/prometheus-ai/agentes">Automatic Agents (423)</a><a href="/en/docs/prometheus-ai/terminal">Embedded AI Terminal</a><a href="/en/docs/prometheus-ai/memoria">Persistent Memory</a><a href="/en/docs/prometheus-ai/historial">History & Sessions</a></div><div class="side-cat"><div class="cat">Preserved Features</div><a href="/en/docs/conservadas/terminal">Integrated Terminal</a><a href="/en/docs/conservadas/git">Git & Version Control</a><a href="/en/docs/conservadas/debugging">Debugging</a><a href="/en/docs/conservadas/extensiones">Extensions (Open VSX)</a><a href="/en/docs/conservadas/live-preview">Live Preview</a><a href="/en/docs/conservadas/temas">Themes</a></div></aside>
+  <main><div class="crumb">Home › Docs › Local Models › Configuration</div><h1>Configuration</h1>
+<p>Local models run with <code>llama-server</code> (llama.cpp), integrated into the editor
+and listening on <code>127.0.0.1:11434</code> — the same server and the same port that
+Ollama uses. That&#39;s why models you already have with Ollama work here without
+changes.</p>
+<blockquote>
+<p><strong>Note:</strong> the server has no configuration panel of its own: it starts with
+fixed arguments, chosen for maximum compatibility. What you can configure,
+with sliders, is each downloaded model (context, offload and temperature).</p>
+</blockquote>
+<h2 id="s0">How the server starts</h2>
+<p><code>llama-server</code> is compiled locally the first time you turn it on (with CUDA
+support if you have NVIDIA) and runs with these fixed parameters:</p>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Value</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>llama-server</code></td>
+<td>compiled binary</td>
+<td>HTTP inference server (llama.cpp)</td>
+</tr>
+<tr>
+<td><code>--port</code></td>
+<td><code>11434</code></td>
+<td>same port Ollama uses</td>
+</tr>
+<tr>
+<td><code>-c</code></td>
+<td>per model</td>
+<td>context window</td>
+</tr>
+<tr>
+<td><code>--context-shift</code></td>
+<td>—</td>
+<td>keeps long conversations on track</td>
+</tr>
+<tr>
+<td><code>--cache-type-k</code> / <code>--cache-type-v</code></td>
+<td><code>q8_0</code></td>
+<td>quantized KV cache, half the VRAM</td>
+</tr>
+<tr>
+<td><code>-ngl</code></td>
+<td><code>99</code></td>
+<td>offloads 99 layers to the GPU</td>
+</tr>
+<tr>
+<td><code>-fa</code></td>
+<td><code>on</code></td>
+<td>flash attention</td>
+</tr>
+<tr>
+<td><code>--jinja</code></td>
+<td>—</td>
+<td>chat templates for models that support them</td>
+</tr>
+</tbody></table>
+<p>The VRAM in use is shown in the panel, and the <strong>Stop</strong> and <strong>Start</strong> buttons
+let you stop and restart the server whenever you want.</p>
+<blockquote>
+<p><strong>Tip:</strong> the server on <code>11434</code> answers as a standard Ollama HTTP API: if
+you already have tools configured against that port, they keep working
+without changes.</p>
+</blockquote>
+<h2 id="s1">Model configuration panel</h2>
+<p>Each downloaded model has its own panel with sliders that control how it
+runs:</p>
+<p><img src="/assets/sliders-modelo.png" alt="Configuration panel of the downloaded model with its sliders"></p>
+<table>
+<thead>
+<tr>
+<th>Control</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Context</td>
+<td>context window (<code>-c</code>), e.g. 8192 tokens</td>
+</tr>
+<tr>
+<td>GPU layers</td>
+<td>how many layers are offloaded to the GPU (<code>-ngl</code>)</td>
+</tr>
+<tr>
+<td>Temperature</td>
+<td>creativity of the responses</td>
+</tr>
+</tbody></table>
+<p>The <strong>Apply</strong> button restarts the server with the new values; the change is
+remembered between sessions.</p>
+<blockquote>
+<p><strong>Note:</strong> with 16 GB of VRAM, raising the context up to 12288 tokens still
+fits thanks to the quantized KV cache — see <a href="contexto">Context &amp; Memory</a>.</p>
+</blockquote>
+<h2 id="s2">What&#39;s next</h2>
+<ul>
+<li><a href="busqueda-hf">Hugging Face Search</a> — find and download GGUF models from the
+built-in catalog.</li>
+</ul>
+<div class="feedback-box"><span>Was this page helpful?</span><span class="fb-btn">👍</span><span class="fb-btn">👎</span><span style="margin-left:auto;color:#8b949e">Configuration</span></div><div class="prevnext"><a href="/en/docs/modelos/busqueda-hf">← modelos/busqueda-hf</a><a href="/en/docs/modelos/contexto">modelos/contexto →</a></div></main>
+  <aside class="toc"><div class="t">On this page</div><a href="#s0">How the server starts</a><a href="#s1">Model configuration panel</a><a href="#s2">What&#39;s next</a></aside>
+</div>
+<footer><div class="wrap foot-row">
+  <span>🌐 GitHub</span><span>🐦 X</span><span>📺 YouTube</span><span>💬 Reddit</span>
+  <div class="foot-links"><span>Support</span><span>Privacy</span><span>Manage cookies</span><span>Terms of use</span><span>License</span></div>
+</div></footer>
+</body>
+</html>
