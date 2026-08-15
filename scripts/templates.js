@@ -22,6 +22,7 @@ export function renderShell(lang, page) {
   const sidebar = page.sidebar ? `<aside class="sidebar">${page.sidebar}</aside>` : '';
   const toc = page.toc ? `<aside class="toc"><div class="t">${lang === 'es' ? 'En esta página' : 'On this page'}</div>${page.toc}</aside>` : '';
   const crumb = page.breadcrumb ? `<div class="crumb">${page.breadcrumb}</div>` : '';
+  const wrap = page.sidebar || page.toc ? 'wrap layout' : 'home';
   return `<!DOCTYPE html>
 <html lang="${lang}">
 <head>
@@ -45,7 +46,7 @@ export function renderShell(lang, page) {
   </div>
 </div></nav>
 <div class="banner"><span class="x">✕</span>${t.banner}</div>
-<div class="wrap layout">
+<div class="${wrap}">
   ${sidebar}
   <main>${crumb}${page.html}</main>
   ${toc}

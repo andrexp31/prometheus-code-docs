@@ -2,6 +2,7 @@ import { mkdir, copyFile, readdir, writeFile, readFile } from 'node:fs/promises'
 import { join } from 'node:path';
 import { marked } from 'marked';
 import { renderShell, buildSidebar, buildToc } from './templates.js';
+import { buildHome } from './home.mjs';
 
 const ROOT = new URL('..', import.meta.url).pathname;
 const CONTENT = join(ROOT, 'content');
@@ -64,6 +65,8 @@ for (const lang of LANGS) {
     console.log(`[build] ${fullPath}`);
   }
 }
+
+await buildHome();
 
 await mkdir(join(PUBLIC, 'assets'), { recursive: true });
 for (const f of await readdir(join(CONTENT, 'assets'))) {
