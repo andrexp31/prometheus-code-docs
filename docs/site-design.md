@@ -23,9 +23,9 @@ Decisiones acordadas con el usuario:
 2. **Contenido**: híbrido — funciones conservadas de VS Code + funciones propias.
 3. **Idiomas**: ES + EN con toggle (páginas separadas por idioma).
 4. **Alcance V1**: Home + Docs core (17 páginas de docs por idioma + home).
-5. **Capturas**: reales, aportadas por el usuario (copia en `content/assets/`).
-   Los originales en el sistema son descartables; el proyecto es la fuente de
-   verdad; Cloudflare sirve los assets en el edge.
+5. **Capturas**: SOLO 2, aportadas por el usuario — `chat-llamacpp.png`
+   (chat con modelo local) y `hf-search.png` (búsqueda en HF). Cada una se usa
+   en exactamente una página. Ningún otro placeholder ni imagen en V1.
 6. **Deploy**: worker nuevo en workers.dev (dominio custom opcional a futuro).
 
 ## 2. Arquitectura
@@ -105,10 +105,10 @@ Replica el mockup aprobado (`docs-layout-v4.html`):
     memoria persistente, historial y sesiones.
   - Funciones conservadas (6 páginas): terminal, Git, debugging, extensiones
     (Open VSX), live preview, temas.
-- **Contenido**: H1, párrafos, callouts, bloques de código con botón copiar,
-  imágenes reales (`chat-llamacpp.png` en "Integración con Prometheus AI",
-  `hf-search.png` en "Búsqueda en Hugging Face"), feedback "¿Te resultó
-  útil?", prev/next.
+- **Contenido**: H1, párrafos, callouts, bloques de código con botón copiar.
+  Las únicas imágenes del sitio: `chat-llamacpp.png` en "Integración con
+  Prometheus AI" y `hf-search.png` en "Búsqueda en Hugging Face". Feedback
+  "¿Te resultó útil?", prev/next.
 - **TOC derecha** sticky ("En esta página") con los H2 del contenido.
 - El contenido de cada página se escribe desde el conocimiento real del
   codebase (lo implementado en las últimas sesiones: HF limit=20, context
@@ -147,4 +147,5 @@ Replica el mockup aprobado (`docs-layout-v4.html`):
 
 - Buscador funcional.
 - Blog, FAQ amplio, página de descargas con checksums.
+- Más capturas de pantalla (solo las que el usuario aporte).
 - Dominio custom, analytics, versión EN profunda si no alcanza en V1.
