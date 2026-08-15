@@ -9,6 +9,7 @@ title: Prometheus Code — Free your code
       <span class="brand">Prometheus Code</span>
       <span class="tag">Free your code.</span>
     </h1>
+    <img class="hero-shot" src="/assets/hero-editor.png" alt="Screenshot of the Prometheus Code editor">
     <p class="sub">A fork of VS Code with <b>agents that work for you</b> — local models, embedded terminal and persistent memory.</p>
     <div class="hero-btns">
       <a class="btn primary" href="#descargas">Download for Linux (.deb)</a>
