@@ -27,11 +27,11 @@
 <p>Prometheus Code es un fork de VS Code (Code - OSS) con identidad propia:
 integra modelos LLM locales, chat de IA y agentes automáticos directamente en
 el editor, sin telemetría y sin nube. Se distribuye como paquete nativo de
-Linux, y también se puede ejecutar desde el código fuente.</p>
+Linux.</p>
 <blockquote>
-<p><strong>Pago único, sin registro:</strong> Prometheus Code es MIT. Pagás una sola vez y
-no hay suscripciones, ni cuentas, ni descargas condicionadas: instalás y el
-editor queda listo para usar.</p>
+<p><strong>Pago único, sin registro:</strong> Pagás una sola vez y no hay suscripciones,
+ni cuentas, ni descargas condicionadas: instalás y el editor queda listo
+para usar.</p>
 </blockquote>
 <h2 id="s0">Paquetes</h2>
 <table>
@@ -80,26 +80,11 @@ lo vemos en <a href="primeros-pasos">Primeros pasos</a>.</p>
 <td>10 GB</td>
 <td>20 GB</td>
 </tr>
-<tr>
-<td>Node.js (solo desde el código)</td>
-<td>20.x</td>
-<td>22.x</td>
-</tr>
 </tbody></table>
 <p>Para los modelos locales con aceleración por GPU necesitás además una GPU
 NVIDIA con CUDA (llama-server se compila con soporte CUDA al primer uso). Sin
 GPU, todo funciona igual por CPU, con menor velocidad de respuesta.</p>
-<h2 id="s2">Desde el código fuente</h2>
-<pre><code class="language-bash">git clone https://github.com/andrexp31/prometheus-code-desktop.git
-cd prometheus-code-desktop/Prometheus-Code
-npm install
-npm run compile-client
-</code></pre>
-<p>Prerrequisitos: Node.js 20+, Python 3 y toolchain de C/C++ (GCC o Clang). Para
-arrancar el editor compilado en modo desarrollo:</p>
-<pre><code class="language-bash">./scripts/code.sh
-</code></pre>
-<h2 id="s3">Primera ejecución</h2>
+<h2 id="s2">Primera ejecución</h2>
 <p>Al abrir Prometheus Code por primera vez, el editor arranca con la ventana de
 bienvenida, que resume las funciones principales: modelos locales, chat de
 Prometheus AI, agentes automáticos, terminal integrada, privacidad total y Git
@@ -110,11 +95,11 @@ y debugging conservados de VS Code.</p>
 cualquier acción, igual que en VS Code. Todo lo que conocés del editor sigue
 acá.</p>
 </blockquote>
-<h2 id="s4">Qué sigue</h2>
+<h2 id="s3">Qué sigue</h2>
 <p>Con el editor instalado, el siguiente paso es encender el motor local y hacer
 tu primer chat con Prometheus AI: <a href="primeros-pasos">Primeros pasos</a>.</p>
 <div class="feedback-box"><span>¿Te resultó útil esta página?</span><span class="fb-btn">👍</span><span class="fb-btn">👎</span><span style="margin-left:auto;color:#8b949e">Descarga e instalación</span></div><div class="prevnext"><a href="/docs/empezar/faq">← empezar/faq</a><a href="/docs/empezar/primeros-pasos">empezar/primeros-pasos →</a></div></main>
-  <aside class="toc"><div class="t">En esta página</div><a href="#s0">Paquetes</a><a href="#s1">Requisitos del sistema</a><a href="#s2">Desde el código fuente</a><a href="#s3">Primera ejecución</a><a href="#s4">Qué sigue</a></aside>
+  <aside class="toc"><div class="t">En esta página</div><a href="#s0">Paquetes</a><a href="#s1">Requisitos del sistema</a><a href="#s2">Primera ejecución</a><a href="#s3">Qué sigue</a></aside>
 </div>
 <footer><div class="wrap foot-row">
   <span>🌐 GitHub</span><span>🐦 X</span><span>📺 YouTube</span><span>💬 Reddit</span>

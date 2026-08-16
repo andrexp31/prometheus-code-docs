@@ -7,12 +7,10 @@ category: Getting Started
 
 Prometheus Code is a fork of VS Code (Code - OSS) with its own identity: it
 integrates local LLM models, an AI chat and automatic agents directly into the
-editor, with no telemetry and no cloud. It ships as a native Linux package,
-and can also be run from source.
+editor, with no telemetry and no cloud. It ships as a native Linux package.
 
-> **One-time payment, no sign-up:** Prometheus Code is MIT. You pay once — no
-> subscriptions, no accounts, no gated downloads: install it and the editor is
-> ready to use.
+> **One-time payment, no sign-up:** You pay once — no subscriptions, no
+> accounts, no gated downloads: install it and the editor is ready to use.
 
 ## Packages
 
@@ -35,27 +33,10 @@ Pick the package for your distribution, install it as usual, and look for
 |---|---|---|
 | RAM | 8 GB | 16 GB |
 | Disk | 10 GB | 20 GB |
-| Node.js (source only) | 20.x | 22.x |
 
 For GPU-accelerated local models you also need an NVIDIA GPU with CUDA
 (llama-server is compiled with CUDA support on first use). Without a GPU,
 everything runs on CPU, just with slower responses.
-
-## From source
-
-```bash
-git clone https://github.com/andrexp31/prometheus-code-desktop.git
-cd prometheus-code-desktop/Prometheus-Code
-npm install
-npm run compile-client
-```
-
-Prerequisites: Node.js 20+, Python 3, and a C/C++ toolchain (GCC or Clang).
-To launch the compiled editor in development mode:
-
-```bash
-./scripts/code.sh
-```
 
 ## First launch
 
