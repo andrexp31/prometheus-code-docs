@@ -2,13 +2,25 @@ export const LANG = {
   es: {
     nav: { funciones: 'Funciones', docs: 'Docs', descargas: 'Descargas', blog: 'Blog', faq: 'FAQ', recursos: 'Recursos', descargar: 'Descargar', en: 'EN' },
     banner: '<b>Nuevo:</b> 423 agentes especializados + modelos locales llama.cpp integrados — sin nube, sin suscripción',
-    footer: ['Soporte', 'Privacidad', 'Gestión de cookies', 'Términos de uso', 'Licencia'],
+    footer: [
+      { label: 'Soporte', href: '/docs/empezar/instalacion' },
+      { label: 'Privacidad', href: '/privacidad' },
+      { label: 'Gestión de cookies', href: '#' },
+      { label: 'Términos de uso', href: '#' },
+      { label: 'Licencia', href: '/licencia' },
+    ],
     social: ['GitHub', 'X', 'YouTube', 'Reddit'],
   },
   en: {
     nav: { funciones: 'Features', docs: 'Docs', descargas: 'Downloads', blog: 'Blog', faq: 'FAQ', recursos: 'Resources', descargar: 'Download', en: 'ES' },
     banner: '<b>New:</b> 423 specialized agents + integrated local llama.cpp models — no cloud, no subscription',
-    footer: ['Support', 'Privacy', 'Manage cookies', 'Terms of use', 'License'],
+    footer: [
+      { label: 'Support', href: '/en/docs/empezar/instalacion' },
+      { label: 'Privacy', href: '/en/privacy' },
+      { label: 'Manage cookies', href: '#' },
+      { label: 'Terms of use', href: '#' },
+      { label: 'License', href: '/en/license' },
+    ],
     social: ['GitHub', 'X', 'YouTube', 'Reddit'],
   },
 };
@@ -53,7 +65,7 @@ export function renderShell(lang, page) {
 </div>
 <footer><div class="wrap foot-row">
   <span>🌐 ${t.social[0]}</span><span>🐦 ${t.social[1]}</span><span>📺 ${t.social[2]}</span><span>💬 ${t.social[3]}</span>
-  <div class="foot-links">${t.footer.map(f => `<span>${f}</span>`).join('')}</div>
+  <div class="foot-links">${t.footer.map(f => `<a href="${f.href}">${f.label}</a>`).join('')}</div>
 </div></footer>
 </body>
 </html>`;

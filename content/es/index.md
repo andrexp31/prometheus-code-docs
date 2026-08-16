@@ -15,7 +15,7 @@ title: Prometheus Code — Libera tu código
       <a class="btn primary" href="#descargas">Descargar para Linux (.deb)</a>
       <a class="btn outline" href="#descargas">Descargar</a>
     </div>
-    <p class="hero-meta">Web · Insiders · Otras plataformas · Al usar Prometheus Code aceptás su <a href="#">licencia</a> y <a href="#">política de privacidad</a></p>
+    <p class="hero-meta">Web · Insiders · Otras plataformas · Al usar Prometheus Code aceptás su <a href="/licencia">licencia</a> y <a href="/privacidad">política de privacidad</a></p>
   </div>
 </header>
 

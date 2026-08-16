@@ -84,7 +84,10 @@ await buildHome();
 
 for (const lang of LANGS) {
   const prefix = base(lang);
-  for (const page of ['release-notes']) {
+  const pages = lang === 'es'
+    ? ['release-notes', 'licencia', 'privacidad']
+    : ['release-notes', 'license', 'privacy'];
+  for (const page of pages) {
     try {
       const p = await readPage(lang, page);
       const { html: contentHtml } = buildToc(p.md);
